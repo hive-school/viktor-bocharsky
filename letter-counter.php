@@ -4,7 +4,7 @@ $string = 'Test string'; // test input string
 
 $string = stream_get_line(STDIN, 255, PHP_EOL); // Get string from console user input
 $letters = str_split($string); // split string to array by letters
-var_dump($letters);
+
 /* counting letter frequency with loop */
 $counter = array();
 foreach ($letters as $letter) {
