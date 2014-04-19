@@ -7,7 +7,7 @@ switch (PHP_SAPI) {
         while ( ! $string) {
             $string = stream_get_line(STDIN, 255, PHP_EOL); // Get string from console user input
             if ( ! $string) {
-                print 'Input string can not be empty. Type something...'. PHP_EOL;
+                print inputEmptyException();
             }
         }
         
@@ -18,7 +18,8 @@ switch (PHP_SAPI) {
         if ( ! isset($_GET['s'])) {
             die('Pass your string by GET method with "s" key.');
         } elseif ( ! $string = $_GET['s']) {
-            die('Input string can not be empty. Type something...');
+            print inputEmptyException();
+            die;
         }
         
         break;
@@ -42,4 +43,8 @@ arsort($counter, SORT_NUMERIC); // reverse sort by frequency
 /* printing letters with frequency */
 foreach ($counter as $letter => $amount) {
     print "$letter => $amount". PHP_EOL;
+}
+
+function inputEmptyException() {
+    return 'Input string can not be empty. Type something...'. PHP_EOL;
 }
