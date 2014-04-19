@@ -1,9 +1,10 @@
 <?php
 
-$string = 'Test string';
+$string = 'Test string'; // test input string
 
-$letters = str_split($string);
+$letters = str_split($string); // split string to array by letters
 
+/* counting letter frequency with loop */
 $counter = array();
 foreach ($letters as $letter) {
     $letter = strtolower($letter);
@@ -13,9 +14,10 @@ foreach ($letters as $letter) {
         $counter[$letter] = 1;
     }
 }
-unset($counter[' ']);
-arsort($counter, SORT_NUMERIC);
+unset($counter[' ']); // remove spaces
+arsort($counter, SORT_NUMERIC); // reverse sort by frequency
 
+/* printing letters with frequency */
 foreach ($counter as $letter => $amount) {
     print "$letter => $amount". PHP_EOL;
 }
