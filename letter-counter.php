@@ -1,6 +1,28 @@
 <?php
 
-$string = stream_get_line(STDIN, 255, PHP_EOL); // Get string from console user input
+$string = ''; // string default value
+switch (PHP_SAPI) {
+    /* console case */
+    case 'cli':
+        while ( ! $string) {
+            $string = stream_get_line(STDIN, 255, PHP_EOL); // Get string from console user input
+            if ( ! $string) {
+                print 'Input string can not be empty. Type something...'. PHP_EOL;
+            }
+        }
+        
+        break;
+    
+    /* web browser case */
+    default:
+        if ( ! isset($_GET['s'])) {
+            die('Pass your string by GET method with "s" key.');
+        } elseif ( ! $string = $_GET['s']) {
+            die('Input string can not be empty. Type something...');
+        }
+        
+        break;
+}
 $letters = str_split($string); // split string to array by letters
 
 /* counting letter frequency with loop */
