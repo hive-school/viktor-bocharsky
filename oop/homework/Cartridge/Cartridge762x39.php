@@ -21,7 +21,7 @@ class Cartridge762x39 extends \Cartridge {
     public function __construct($empty = false)
     {
         $this->setEmpty($empty); // cartridge is empty if true
-        $this->setDefect(7 == rand(0,100)); // cartridge is defect if true
+        $this->setDefect(7 == mt_rand(0,100)); // cartridge is defect if true
     }
 
     /**
