@@ -2,13 +2,13 @@
 
 namespace Magazine;
 
-use Cartridge\Cartridge762x39;
+use Cartridge\Cartridge127x33;
 
 /**
  * Class Ak47
  * @package Magazine
  */
-class Ak47 extends \Magazine
+class DesertEagle extends \Magazine
 {
 
     /**
@@ -19,7 +19,7 @@ class Ak47 extends \Magazine
     /**
      * The max magazine count
      */
-    const MAX_SIZE = 30;
+    const MAX_SIZE = 7;
 
     function __construct(array $cartridges = array())
     {
@@ -41,7 +41,7 @@ class Ak47 extends \Magazine
 
     /**
      * Get current cartridge from magazine
-     * @return Cartridge762x39
+     * @return Cartridge127x33
      */
     public function getCartridge()
     {
@@ -55,10 +55,10 @@ class Ak47 extends \Magazine
 
     /**
      * Add new cartridge to magazine
-     * @param Cartridge762x39 $cartridge
+     * @param Cartridge127x33 $cartridge
      * @return $this
      */
-    public function addCartridges(Cartridge762x39 $cartridge)
+    public function addCartridges(Cartridge127x33 $cartridge)
     {
         if ($this->count < self::MAX_SIZE) {
             $this->cartridges[] = $cartridge;

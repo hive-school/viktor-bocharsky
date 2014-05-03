@@ -25,10 +25,10 @@ class Person
     function __toString()
     {
         return ''
-            . $this->getName()
-            . ($this->getName() && $this->getSurname() ? ' ' : '')
-            . $this->getSurname()
-        ;
+                . $this->getName()
+                . ($this->getName() && $this->getSurname() ? ' ' : '')
+                . $this->getSurname()
+            ;
     }
 
     /**

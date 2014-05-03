@@ -3,10 +3,10 @@
 namespace Cartridge;
 
 /**
- * Class Cartridge762x39 - The cartridge 7.62 x 39mm for AK-47
+ * Class Cartridge127x33 - The cartridge 12.7 x 33mm for Desert Eagle
  * @package Cartridge
  */
-class Cartridge762x39 extends \Cartridge
+class Cartridge127x33 extends \Cartridge
 {
 
     public function __construct($empty = false)

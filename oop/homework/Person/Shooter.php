@@ -28,12 +28,12 @@ class Shooter extends \Person
     function __toString()
     {
         return ''
-            . parent::__toString()
-            . ' - Precision: '
-            . $this->getPrecision() * 100
-            . '%'
-            . PHP_EOL
-        ;
+                . parent::__toString()
+                . ' - Precision: '
+                . $this->getPrecision() * 100
+                . '%'
+                . PHP_EOL
+            ;
     }
 
     /**
