@@ -4,7 +4,7 @@ namespace Person;
 
 /**
  * Class Shooter
- * @package Person
+ * @package \Person
  */
 class Shooter extends \Person
 {
@@ -15,7 +15,7 @@ class Shooter extends \Person
     private $precision;
 
     /**
-     * @var Weapon The weapon of shooter
+     * @var \Weapon The weapon of shooter
      */
     private $weapon;
 
@@ -53,7 +53,7 @@ class Shooter extends \Person
     }
 
     /**
-     * @return Weapon
+     * @return \Weapon
      */
     public function getWeapon()
     {
@@ -61,7 +61,7 @@ class Shooter extends \Person
     }
 
     /**
-     * @param Weapon $weapon
+     * @param \Weapon $weapon
      */
     public function setWeapon(\Weapon $weapon = null)
     {

@@ -4,7 +4,7 @@ namespace Weapon;
 
 /**
  * Class Automatic
- * @package Weapon
+ * @package \Weapon
  */
 abstract class Automatic extends \Weapon
 {
