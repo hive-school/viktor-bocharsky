@@ -3,7 +3,7 @@
 /**
  * Class Magazine
  */
-abstract class Magazine
+abstract class Magazine implements \Interfaces\Rechargeable
 {
 
     /**

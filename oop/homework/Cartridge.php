@@ -3,7 +3,7 @@
 /**
  * Class Cartridge
  */
-abstract class Cartridge
+abstract class Cartridge implements \Interfaces\Shootable
 {
 
     /**

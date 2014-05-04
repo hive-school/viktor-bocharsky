@@ -3,7 +3,7 @@
 /**
  * Class Weapon
  */
-abstract class Weapon
+abstract class Weapon implements \Interfaces\Shootable
 {
     function __construct()
     {
