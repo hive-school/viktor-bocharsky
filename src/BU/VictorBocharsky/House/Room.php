@@ -81,7 +81,7 @@ class Room {
     }
     
     public function getHeight() {
-        
+
         return $this->height;
     }
     
