@@ -10,8 +10,9 @@ use BU\VictorBocharsky\Shooter\Cartridge\Cartridge127x33;
 use BU\VictorBocharsky\Shooter\Cartridge\Cartridge762x39;
 
 // Register the classes autoloader
-require_once dirname(__FILE__) . '/../src/BU/VictorBocharsky/Shooter/Autoloader.php';
-Autoloader::register();
+//require_once dirname(__FILE__) . '/../src/BU/VictorBocharsky/Shooter/Autoloader.php';
+//Autoloader::register();
+require_once __DIR__ . '/../vendor/autoload.php'; // Register Composer autoloader
 
 print $shooter = new Shooter('John', 'Rambo');
 

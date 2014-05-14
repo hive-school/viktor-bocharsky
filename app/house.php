@@ -3,8 +3,9 @@
 use BU\VictorBocharsky\House\House;
 use BU\VictorBocharsky\House\Room;
 
-include_once dirname(__FILE__) . '/../src/BU/VictorBocharsky/House/House.php';
-include_once dirname(__FILE__) . '/../src/BU/VictorBocharsky/House//Room.php';
+//include_once dirname(__FILE__) . '/../src/BU/VictorBocharsky/House/House.php';
+//include_once dirname(__FILE__) . '/../src/BU/VictorBocharsky/House//Room.php';
+require_once __DIR__ . '/../vendor/autoload.php'; // Register Composer autoloader
 
 $house = new House;
 

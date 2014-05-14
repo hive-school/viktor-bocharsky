@@ -1,0 +1,18 @@
+{
+    "name": "bionic-university/victor-bocharsky",
+    "description": "PHP Core lectures at Bionic University",
+    "require": {
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "victor",
+            "email": "bocharsky.bw@gmail.com"
+        }
+    ]
+}
