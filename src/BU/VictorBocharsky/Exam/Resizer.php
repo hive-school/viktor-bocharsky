@@ -33,8 +33,8 @@ class Resizer extends AbstractResizer
 
     public function __construct(Image $image, $finalWidth = 0, $finalHeight = 0)
     {
-        $this->image = $image;
         $this
+            ->setImage($image)
             ->setFinalWidth($finalWidth)
             ->setFinalHeight($finalHeight)
         ;
@@ -47,13 +47,32 @@ class Resizer extends AbstractResizer
      */
     public function thumbnail()
     {
-        $this->centerPointX = round($this->image->getWidth() / 2);
-        $this->centerPointY = round($this->image->getHeight() / 2);
+        $this->centerPointX = round($this->getImage()->getWidth() / 2);
+        $this->centerPointY = round($this->getImage()->getHeight() / 2);
 
         return 'Final image size: ' . $this->finalWidth . ' x ' . $this->finalHeight . '. ' . PHP_EOL
             . 'Center of image in ' . $this->centerPointX . ' x ' . $this->centerPointY . '. ' . PHP_EOL;
         ;
     }
+
+    /**
+     * @return Image
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param $image
+     * @return $this
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+        return $this;
+    }
+
 
     /**
      * @return int
@@ -65,6 +84,7 @@ class Resizer extends AbstractResizer
 
     /**
      * @param int $finalWidth
+     * @return $this
      */
     public function setFinalWidth($finalWidth)
     {
@@ -82,6 +102,7 @@ class Resizer extends AbstractResizer
 
     /**
      * @param int $finalHeight
+     * @return $this
      */
     public function setFinalHeight($finalHeight)
     {
