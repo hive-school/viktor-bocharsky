@@ -10,7 +10,7 @@ class Resizer extends AbstractResizer
 {
 
     /**
-     * @var Image The resizing image
+     * @var ImageInterface The resizing image
      */
     private $image;
 
@@ -31,7 +31,7 @@ class Resizer extends AbstractResizer
     private $rightBottomY = 0;
 
 
-    public function __construct(Image $image, $finalWidth = 0, $finalHeight = 0)
+    public function __construct(ImageInterface $image, $finalWidth = 0, $finalHeight = 0)
     {
         $this
             ->setImage($image)
@@ -56,7 +56,7 @@ class Resizer extends AbstractResizer
     }
 
     /**
-     * @return Image
+     * @return ImageInterface
      */
     public function getImage()
     {
@@ -64,10 +64,10 @@ class Resizer extends AbstractResizer
     }
 
     /**
-     * @param $image
+     * @param ImageInterface $image
      * @return $this
      */
-    public function setImage($image)
+    public function setImage(ImageInterface $image)
     {
         $this->image = $image;
         return $this;
