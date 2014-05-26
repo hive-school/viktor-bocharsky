@@ -43,6 +43,7 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
+
     public function __construct()
     {
         $this->isActive = true;
@@ -50,6 +51,7 @@ class User implements UserInterface, \Serializable
         // may not be needed, see section on salt below
         // $this->salt = md5(uniqid(null, true));
     }
+
 
     /**
      * @inheritDoc

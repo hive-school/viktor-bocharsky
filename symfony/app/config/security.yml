@@ -38,10 +38,17 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
 
+        # The name of firewall ("auth") do NOT change! use in BWUserBundleUserController::authorizeUser()
         auth:
             pattern:    ^/
-            http_basic: ~
+            anonymous:  ~
+            form_login:
+                login_path: user_sign_in
+                check_path: user_sign_in_check
+            logout:
+                path:   user_sign_out
+                target: home
 
     access_control:
         #- { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/_admin, roles: ROLE_ADMIN }
