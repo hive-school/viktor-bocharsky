@@ -1,0 +1,16 @@
+bw_blog:
+    resource: "@BWBlogBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bw_user:
+    resource: "@BWUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bw_main:
+    resource: "@BWMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+bw_skeleton:
+    resource: "@BWSkeletonBundle/Resources/config/routing.yml"
+    prefix:   /
+

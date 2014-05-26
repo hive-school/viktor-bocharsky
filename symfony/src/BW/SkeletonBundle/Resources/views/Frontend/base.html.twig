@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="{% block lang %}en{% endblock %}">
+    <head>
+        <meta charset="{% block charset %}utf-8{% endblock %}">
+
+        <title>{% block title %}% Base Template %{% endblock %}</title>
+        <meta name="description" content="{% block description %}{% endblock %}"/>
+
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
+        {% block css %}<!-- % CSS % -->{% endblock %}
+        {% block js %}<!-- % JS % -->{% endblock %}
+    </head>
+    <body id="body">
+        {% block body %}
+            <div id="wrap">
+                <div id="wrap_inner">
+                    {% block body_wrap %}
+                        {% block header %}
+                            % Header Block %
+                        {% endblock %}
+
+                        {% block pre_content %}
+                            % Pre Content Block %
+                        {% endblock %}
+
+                        {% block flash_message %}
+                            % Flash Message Block %
+                        {% endblock %}
+
+                        {% block content %}
+                            % Content Block %
+                        {% endblock %}
+
+                        {% block post_content %}
+                            % Post Content Block %
+                        {% endblock %}
+
+                        {% block footer %}
+                            % Footer Block %
+                        {% endblock %}
+                    {% endblock %}
+                </div>
+            </div>
+        {% endblock %}
+
+        {% block overflow %}
+            % Overflow Block %
+        {% endblock %}
+    </body>
+</html>

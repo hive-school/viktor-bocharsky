@@ -1,0 +1,3 @@
+bw_blog_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: BWBlogBundle:Default:index }

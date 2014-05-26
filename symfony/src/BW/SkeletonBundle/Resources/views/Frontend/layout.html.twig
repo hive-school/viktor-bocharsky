@@ -1,0 +1,90 @@
+{% extends "BWSkeletonBundle:Frontend:base.html.twig" %}
+
+{% block lang %}ru{% endblock %}
+
+{% block charset %}utf-8{% endblock %}
+
+{% block title %}% Layout Template %{% endblock %}
+
+{% block description %}{% endblock %}
+
+{% block css %}
+    <!-- % CSS % -->
+    {# less stylesheet
+    {% stylesheets filter='less' output='cache/bootstrap.css' %}
+        <link href="{{ asset('libs/bootstrap-3.1.1/less/bootstrap.less') }}" type="text/css" rel="stylesheet/less">
+    {% endstylesheets %}
+    #}
+    {% stylesheets 'libs/bootstrap-3.1.1/less/bootstrap.less' filter="less" output="assetic/bootstrap.css" %}
+        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
+    {% endstylesheets %}
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block js %}
+    <!-- % JS % -->
+    {# less compiler
+    <script src="{{ asset('js/less-1.7.0.min.js') }}" type="text/javascript"></script>
+    #}
+    <script src="http://code.jquery.com/jquery.min.js" type="text/javascript"></script>
+    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
+{% endblock %}
+
+{% block header %}
+    <header id="header">
+        {% block header_wrap %}
+        {% endblock %}
+    </header>
+{% endblock %}
+
+{% block pre_content %}
+    <div id="pre_content">
+        {% block pre_content_wrap %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block flash_message %}
+    {% if app.session.flashbag.all %}
+        {% block flash_message_wrap %}
+            <div id="flash_message">
+                {% for status, flashMessages in app.session.flashbag.all %}
+                    {% for flashMessage in flashMessages %}
+                        <div class="alert alert-dismissable alert-{{ status }} fade in">
+                            {{ flashMessage|raw }}
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endblock %}
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <section id="section">
+        {% block content_wrap %}
+        {% endblock %}
+    </section>
+{% endblock %}
+
+{% block post_content %}
+    <div id="post_content">
+        {% block post_content_wrap %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer id="footer">
+        {% block footer_wrap %}
+        {% endblock %}
+    </footer>
+{% endblock %}
+
+{% block overflow %}
+    <div id="overflow">
+        {% block overflow_wrap %}
+        {% endblock %}
+    </div>
+{% endblock %}

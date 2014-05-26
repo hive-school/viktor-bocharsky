@@ -1,0 +1,26 @@
+BW\UserBundle\Entity\User:
+    type: entity
+    table: users
+    repositoryClass: BW\UserBundle\Entity\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 25
+            unique: true
+        password:
+            type: string
+            length: 64
+        email:
+            type: string
+            length: 60
+            unique: true
+        isActive:
+            column: is_active
+            type: boolean
+    lifecycleCallbacks: {  }

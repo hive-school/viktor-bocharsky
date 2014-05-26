@@ -1,0 +1,7 @@
+parameters:
+#    bw_skeleton.example.class: BW\SkeletonBundle\Example
+
+services:
+#    bw_skeleton.example:
+#        class: %bw_skeleton.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
