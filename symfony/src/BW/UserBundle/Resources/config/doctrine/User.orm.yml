@@ -23,4 +23,8 @@ BW\UserBundle\Entity\User:
         isActive:
             column: is_active
             type: boolean
+    manyToMany:
+        roles:
+            targetEntity: BW\UserBundle\Entity\Role
+            inversedBy: users
     lifecycleCallbacks: {  }

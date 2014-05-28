@@ -1,3 +1,15 @@
-bw_user_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: BWUserBundle:Default:index }
+bw_user_bundle_role:
+    resource: "@BWUserBundle/Resources/config/routing/role.yml"
+    prefix:   /role
+
+bw_user_bundle_role_admin:
+    resource: "@BWUserBundle/Resources/config/routing/role_admin.yml"
+    prefix:   /admin/role
+
+bw_user_bundle_user:
+    resource: "@BWUserBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+bw_user_bundle_user_admin:
+    resource: "@BWUserBundle/Resources/config/routing/user_admin.yml"
+    prefix:   /admin/user

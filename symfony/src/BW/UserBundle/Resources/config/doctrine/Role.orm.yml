@@ -16,5 +16,8 @@ BW\UserBundle\Entity\Role:
             type: string
             length: 20
             unique: true
-        #users:
+    manyToMany:
+        users:
+            targetEntity: BW\UserBundle\Entity\User
+            mappedBy: roles
     lifecycleCallbacks: {  }
