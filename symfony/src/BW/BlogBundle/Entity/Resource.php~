@@ -1,0 +1,52 @@
+<?php
+
+namespace BW\BlogBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Resource
+ */
+class Resource
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $heading;
+
+    /**
+     * @var string
+     */
+    private $description;
+
+    /**
+     * @var string
+     */
+    private $link;
+
+    /**
+     * @var boolean
+     */
+    private $read;
+
+    /**
+     * @var boolean
+     */
+    private $liked;
+
+    /**
+     * @var \DateTime
+     */
+    private $created;
+
+    /**
+     * @var \DateTime
+     */
+    private $updated;
+
+}

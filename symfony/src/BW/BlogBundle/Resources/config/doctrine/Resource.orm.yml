@@ -1,0 +1,29 @@
+BW\BlogBundle\Entity\Resource:
+    type: entity
+    table: null
+    repositoryClass: BW\BlogBundle\Entity\ResourceRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        heading:
+            type: string
+            length: 255
+        description:
+            type: text
+        link:
+            type: string
+            length: 255
+        read:
+            type: boolean
+            column: is_read
+        liked:
+            type: boolean
+        created:
+            type: datetime
+        updated:
+            type: datetime
+    lifecycleCallbacks: {  }

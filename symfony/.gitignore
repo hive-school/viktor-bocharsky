@@ -10,6 +10,7 @@
 /bin/
 /composer.phar
 
+/*~
 /.idea/
 /nbproject/
 /web/assetic/
