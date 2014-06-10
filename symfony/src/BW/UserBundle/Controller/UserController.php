@@ -2,8 +2,10 @@
 
 namespace BW\UserBundle\Controller;
 
+use BW\UserBundle\Form\SignUpType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 use BW\UserBundle\Entity\User;
 use BW\UserBundle\Form\UserType;
@@ -219,5 +221,66 @@ class UserController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    public function signInAction(Request $request)
+    {
+        $session = $request->getSession();
+
+        // get the login error if there is one
+        if ($request->attributes->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
+            $error = $request->attributes->get(
+                SecurityContextInterface::AUTHENTICATION_ERROR
+            );
+        } elseif (null !== $session && $session->has(SecurityContextInterface::AUTHENTICATION_ERROR)) {
+            $error = $session->get(SecurityContextInterface::AUTHENTICATION_ERROR);
+            $session->remove(SecurityContextInterface::AUTHENTICATION_ERROR);
+        } else {
+            $error = '';
+        }
+
+        // last username entered by the user
+        $lastUsername = (null === $session)
+            ? ''
+            : $session->get(SecurityContextInterface::LAST_USERNAME)
+        ;
+
+        return $this->render(
+            'BWUserBundle:User:sign-in.html.twig',
+            array(
+                // last username entered by the user
+                'last_username' => $lastUsername,
+                'error'         => $error,
+            )
+        );
+    }
+
+    public function signUpAction(Request $request)
+    {
+        $session = $request->getSession();
+
+        $user = new User();
+        $form = $this->createForm(new SignUpType(), $user);
+        if ($request->getMethod('POST')) {
+            $form->handleRequest($request);
+            if ($form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($user);
+                $em->flush();
+                $session->getFlashBag()->add(
+                    'success',
+                    'User successful registered'
+                );
+
+                return $this->redirect($this->generateUrl('user_sign_in'));
+            }
+        }
+
+        return $this->render(
+            'BWUserBundle:User:sign-up.html.twig',
+            array(
+                'form' => $form->createView(),
+            )
+        );
     }
 }

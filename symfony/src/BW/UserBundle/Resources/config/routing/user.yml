@@ -1,0 +1,15 @@
+user_sign_in:
+    pattern:  /sign-in
+    defaults: { _controller: "BWUserBundle:User:signIn" }
+
+user_sign_in_check:
+    pattern:  /sign-in-check
+    #defaults: { _controller: "BWUserBundle:User:signInCheck" }
+
+user_sign_out:
+    pattern:  /sign-out
+    #defaults: { _controller: "BWUserBundle:User:signOut" }
+
+user_sign_up:
+    pattern:  /sign-up
+    defaults: { _controller: "BWUserBundle:User:signUp" }

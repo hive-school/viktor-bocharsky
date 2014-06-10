@@ -4,7 +4,7 @@ bw_user_bundle_role:
 
 bw_user_bundle_role_admin:
     resource: "@BWUserBundle/Resources/config/routing/role_admin.yml"
-    prefix:   /admin/role
+    prefix:   /_admin/role
 
 bw_user_bundle_user:
     resource: "@BWUserBundle/Resources/config/routing/user.yml"
@@ -12,4 +12,4 @@ bw_user_bundle_user:
 
 bw_user_bundle_user_admin:
     resource: "@BWUserBundle/Resources/config/routing/user_admin.yml"
-    prefix:   /admin/user
+    prefix:   /_admin/user

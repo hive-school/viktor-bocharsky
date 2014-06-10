@@ -5,7 +5,8 @@ namespace BW\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Resource
+ * Class Resource
+ * @package BW\BlogBundle\Entity
  */
 class Resource
 {
@@ -49,6 +50,8 @@ class Resource
      */
     private $updated;
 
+
+    /* SETTERS / GETTERS */
 
     /**
      * Get id

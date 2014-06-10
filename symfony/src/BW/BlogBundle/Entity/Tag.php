@@ -5,7 +5,8 @@ namespace BW\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tag
+ * Class Tag
+ * @package BW\BlogBundle\Entity
  */
 class Tag
 {
@@ -19,6 +20,8 @@ class Tag
      */
     private $name;
 
+
+    /* SETTERS / GETTERS */
 
     /**
      * Get id

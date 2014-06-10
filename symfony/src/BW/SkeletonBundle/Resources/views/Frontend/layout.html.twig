@@ -33,6 +33,20 @@
 {% block header %}
     <header id="header">
         {% block header_wrap %}
+            <ul>
+                {% if app.user %}
+                <li>
+                    <a href="{{ path('user_sign_out') }}">Sign out</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{{ path('user_sign_in') }}">Sign in</a>
+                </li>
+                <li>
+                    <a href="{{ path('user_sign_up') }}">Sign up</a>
+                </li>
+                {% endif %}
+            </ul>
         {% endblock %}
     </header>
 {% endblock %}

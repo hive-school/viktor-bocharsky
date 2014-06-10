@@ -1,0 +1,11 @@
+{% extends 'BWSkeletonBundle:Frontend:layout.html.twig' %}
+
+{% block content %}
+    <h1>Sign Up</h1>
+
+    {{ form(form) }}
+
+    <div>
+        Already has account? <a href="{{ path('user_sign_in') }}">Sign in</a>!
+    </div>
+{% endblock %}
