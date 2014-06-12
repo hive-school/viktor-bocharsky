@@ -1,0 +1,29 @@
+BW\UserBundle\Entity\Profile:
+    type: entity
+    table: profiles
+    repositoryClass: BW\UserBundle\Entity\ProfileRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        surname:
+            type: string
+            length: 255
+        name:
+            type: string
+            length: 255
+        patronymic:
+            type: string
+            length: 255
+        phone:
+            type: string
+            length: 255
+    oneToOne:
+        user:
+            targetEntity: BW\UserBundle\Entity\User
+            inversedBy: profile
+            joinColumn: user_id
+    lifecycleCallbacks: {  }

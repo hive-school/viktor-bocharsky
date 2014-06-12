@@ -10,4 +10,9 @@ class MainController extends Controller
     {
         return $this->render('BWMainBundle:Main:home.html.twig');
     }
+
+    public function aboutAction()
+    {
+        return $this->render('BWMainBundle:Main:about.html.twig');
+    }
 }

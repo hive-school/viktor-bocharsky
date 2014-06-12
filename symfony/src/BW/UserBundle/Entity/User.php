@@ -42,6 +42,11 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @var Profile
+     */
+    private $profile;
+
 
     /**
      * @inheritDoc
@@ -152,6 +157,7 @@ class User implements UserInterface, \Serializable
      * Set username
      *
      * @param string $username
+     *
      * @return User
      */
     public function setUsername($username)
@@ -165,6 +171,7 @@ class User implements UserInterface, \Serializable
      * Set password
      *
      * @param string $password
+     *
      * @return User
      */
     public function setPassword($password)
@@ -178,6 +185,7 @@ class User implements UserInterface, \Serializable
      * Set email
      *
      * @param string $email
+     *
      * @return User
      */
     public function setEmail($email)
@@ -201,6 +209,7 @@ class User implements UserInterface, \Serializable
      * Set isActive
      *
      * @param boolean $isActive
+     *
      * @return User
      */
     public function setIsActive($isActive)
@@ -224,6 +233,7 @@ class User implements UserInterface, \Serializable
      * Add roles
      *
      * @param \BW\UserBundle\Entity\Role $roles
+     *
      * @return User
      */
     public function addRole(\BW\UserBundle\Entity\Role $roles)
@@ -241,5 +251,29 @@ class User implements UserInterface, \Serializable
     public function removeRole(\BW\UserBundle\Entity\Role $roles)
     {
         $this->roles->removeElement($roles);
+    }
+
+    /**
+     * Set profile
+     *
+     * @param \BW\UserBundle\Entity\Profile $profile
+     *
+     * @return User
+     */
+    public function setProfile(\BW\UserBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \BW\UserBundle\Entity\Profile 
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }

@@ -1,0 +1,144 @@
+<?php
+
+namespace BW\UserBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Profile
+ */
+class Profile
+{
+    /**
+     * @var integer
+     */
+    private $id;
+
+    /**
+     * @var string
+     */
+    private $surname;
+
+    /**
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @var string
+     */
+    private $patronymic;
+
+    /**
+     * @var string
+     */
+    private $phone;
+
+    /**
+     * @var User
+     */
+    private $user;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     * @return Profile
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string 
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     * @return Profile
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set patronymic
+     *
+     * @param string $patronymic
+     * @return Profile
+     */
+    public function setPatronymic($patronymic)
+    {
+        $this->patronymic = $patronymic;
+
+        return $this;
+    }
+
+    /**
+     * Get patronymic
+     *
+     * @return string 
+     */
+    public function getPatronymic()
+    {
+        return $this->patronymic;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Profile
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+}

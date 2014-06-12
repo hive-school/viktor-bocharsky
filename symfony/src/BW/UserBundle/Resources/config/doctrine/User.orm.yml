@@ -23,6 +23,10 @@ BW\UserBundle\Entity\User:
         isActive:
             column: is_active
             type: boolean
+    oneToOne:
+        profile:
+            targetEntity: BW\UserBundle\Entity\Profile
+            mappedBy: user
     manyToMany:
         roles:
             targetEntity: BW\UserBundle\Entity\Role

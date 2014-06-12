@@ -1,10 +1,10 @@
 <?php
 
-namespace BW\UserBundle\Tests\Controller;
+namespace BW\BlogBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ProfileControllerTest extends WebTestCase
+class ResourceControllerTest extends WebTestCase
 {
     /*
     public function testCompleteScenario()
@@ -13,13 +13,13 @@ class ProfileControllerTest extends WebTestCase
         $client = static::createClient();
 
         // Create a new entry in the database
-        $crawler = $client->request('GET', '/profile/');
-        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /profile/");
+        $crawler = $client->request('GET', '/resource/');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /resource/");
         $crawler = $client->click($crawler->selectLink('Create a new entry')->link());
 
         // Fill in the form and submit it
         $form = $crawler->selectButton('Create')->form(array(
-            'bw_userbundle_profiletype[field_name]'  => 'Test',
+            'bw_blogbundle_resourcetype[field_name]'  => 'Test',
             // ... other fields to fill
         ));
 
@@ -33,7 +33,7 @@ class ProfileControllerTest extends WebTestCase
         $crawler = $client->click($crawler->selectLink('Edit')->link());
 
         $form = $crawler->selectButton('Edit')->form(array(
-            'bw_userbundle_profiletype[field_name]'  => 'Foo',
+            'bw_blogbundle_resourcetype[field_name]'  => 'Foo',
             // ... other fields to fill
         ));
 

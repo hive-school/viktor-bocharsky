@@ -13,3 +13,7 @@ bw_user_bundle_user:
 bw_user_bundle_user_admin:
     resource: "@BWUserBundle/Resources/config/routing/user_admin.yml"
     prefix:   /_admin/user
+
+bw_user_bundle_profile:
+    resource: "@BWUserBundle/Resources/config/routing/profile.yml"
+    prefix:   /user/profile

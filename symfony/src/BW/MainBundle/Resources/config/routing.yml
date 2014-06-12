@@ -1,3 +1,7 @@
 home:
     pattern:  /
     defaults: { _controller: BWMainBundle:Main:home }
+
+about:
+    pattern:  /about
+    defaults: { _controller: BWMainBundle:Main:about }

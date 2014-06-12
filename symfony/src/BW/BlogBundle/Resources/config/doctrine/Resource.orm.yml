@@ -1,6 +1,6 @@
 BW\BlogBundle\Entity\Resource:
     type: entity
-    table: null
+    table: resources
     repositoryClass: BW\BlogBundle\Entity\ResourceRepository
     id:
         id:

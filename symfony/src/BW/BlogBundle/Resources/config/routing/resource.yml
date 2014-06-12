@@ -1,0 +1,30 @@
+resource:
+    pattern:  /
+    defaults: { _controller: "BWBlogBundle:Resource:index" }
+
+resource_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "BWBlogBundle:Resource:show" }
+
+resource_new:
+    pattern:  /new
+    defaults: { _controller: "BWBlogBundle:Resource:new" }
+
+resource_create:
+    pattern:  /create
+    defaults: { _controller: "BWBlogBundle:Resource:create" }
+    requirements: { _method: post }
+
+resource_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "BWBlogBundle:Resource:edit" }
+
+resource_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "BWBlogBundle:Resource:update" }
+    requirements: { _method: post|put }
+
+resource_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "BWBlogBundle:Resource:delete" }
+    requirements: { _method: post|delete }

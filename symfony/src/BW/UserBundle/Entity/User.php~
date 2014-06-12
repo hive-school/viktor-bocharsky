@@ -42,6 +42,11 @@ class User implements UserInterface, \Serializable
      */
     private $roles;
 
+    /**
+     * @var Profile
+     */
+    private $profile;
+
 
     /**
      * @inheritDoc

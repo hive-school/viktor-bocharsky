@@ -225,6 +225,10 @@ class UserController extends Controller
 
     public function signInAction(Request $request)
     {
+        if ($this->getUser()) {
+            return $this->redirect($this->generateUrl('home'));
+        }
+
         $session = $request->getSession();
 
         // get the login error if there is one
@@ -257,6 +261,10 @@ class UserController extends Controller
 
     public function signUpAction(Request $request)
     {
+        if ($this->getUser()) {
+            return $this->redirect($this->generateUrl('home'));
+        }
+
         $session = $request->getSession();
 
         $user = new User();

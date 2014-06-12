@@ -34,7 +34,19 @@
     <header id="header">
         {% block header_wrap %}
             <ul>
+                <li>
+                    <a href="{{ path('home') }}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ path('about') }}">About</a>
+                </li>
                 {% if app.user %}
+                <li>
+                    <a href="{{ path('resource') }}">Resources</a>
+                </li>
+                <li>
+                    <a href="{{ path('profile_edit') }}">Profile</a>
+                </li>
                 <li>
                     <a href="{{ path('user_sign_out') }}">Sign out</a>
                 </li>

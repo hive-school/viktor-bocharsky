@@ -1,0 +1,8 @@
+profile_edit:
+    pattern:  /edit
+    defaults: { _controller: "BWUserBundle:Profile:edit" }
+
+profile_update:
+    pattern:  /update
+    defaults: { _controller: "BWUserBundle:Profile:update" }
+    requirements: { _method: post|put }
