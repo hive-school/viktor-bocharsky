@@ -1,3 +1,0 @@
-[submodule "symfony"]
-	path = symfony
-	url = git@github.com:bocharsky-bw/bionic-symfony.git
