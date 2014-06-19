@@ -19,6 +19,7 @@ class UserType extends AbstractType
                 'required' => false,
             ))
             ->add('username', 'text', array(
+                'required' => false,
             ))
             ->add('password', 'password', array(
                 'required' => false,
@@ -29,6 +30,7 @@ class UserType extends AbstractType
             ->add('roles', 'entity', array(
                 'class' => 'BW\UserBundle\Entity\Role',
                 'property' => 'name',
+                'required' => false,
                 'multiple' => true,
                 'expanded' => true,
             ))
@@ -50,6 +52,6 @@ class UserType extends AbstractType
      */
     public function getName()
     {
-        return 'user';
+        return 'bw_user';
     }
 }

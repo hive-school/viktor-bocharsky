@@ -18,10 +18,8 @@ class SignUpType extends AbstractType
             ->add('username', 'text', array(
             ))
             ->add('password', 'password', array(
-                'required' => false,
             ))
             ->add('email', 'email', array(
-                'required' => false,
             ))
             ->add('signUp', 'submit')
         ;
@@ -42,6 +40,6 @@ class SignUpType extends AbstractType
      */
     public function getName()
     {
-        return 'sign_up';
+        return 'bw_sign_up';
     }
 }

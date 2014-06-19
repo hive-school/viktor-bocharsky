@@ -15,13 +15,19 @@ class ResourceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('heading')
-            ->add('description')
-            ->add('link')
-            ->add('read')
-            ->add('liked')
-            ->add('created')
-            ->add('updated')
+            ->add('link', 'url', array(
+            ))
+            ->add('heading', 'text', array(
+            ))
+            ->add('description', 'textarea', array(
+                'required' => false,
+            ))
+            ->add('read', 'checkbox', array(
+                'required' => false,
+            ))
+            ->add('liked', 'checkbox', array(
+                'required' => false,
+            ))
         ;
     }
     

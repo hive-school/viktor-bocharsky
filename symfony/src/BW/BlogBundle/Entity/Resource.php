@@ -18,27 +18,27 @@ class Resource
     /**
      * @var string
      */
-    private $heading;
+    private $heading = '';
 
     /**
      * @var string
      */
-    private $description;
+    private $description = '';
 
     /**
      * @var string
      */
-    private $link;
+    private $link = '';
 
     /**
      * @var boolean
      */
-    private $read;
+    private $read = false;
 
     /**
      * @var boolean
      */
-    private $liked;
+    private $liked = false;
 
     /**
      * @var \DateTime
@@ -49,6 +49,13 @@ class Resource
      * @var \DateTime
      */
     private $updated;
+
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+    }
 
 
     /* SETTERS / GETTERS */
@@ -94,7 +101,12 @@ class Resource
      */
     public function setDescription($description)
     {
-        $this->description = $description;
+        if (isset($description)) {
+            $this->description = $description;
+        } else {
+            $this->description = '';
+        }
+
 
         return $this;
     }

@@ -15,8 +15,10 @@ class RoleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name', 'text')
-            ->add('role', 'text')
+            ->add('name', 'text', array(
+            ))
+            ->add('role', 'text', array(
+            ))
         ;
     }
     
@@ -35,6 +37,6 @@ class RoleType extends AbstractType
      */
     public function getName()
     {
-        return 'bw_userbundle_role';
+        return 'bw_role';
     }
 }

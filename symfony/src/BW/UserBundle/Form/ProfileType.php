@@ -15,10 +15,18 @@ class ProfileType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('surname')
-            ->add('name')
-            ->add('patronymic')
-            ->add('phone')
+            ->add('surname', 'text', array(
+                'required' => false,
+            ))
+            ->add('name', 'text', array(
+                'required' => false,
+            ))
+            ->add('patronymic', 'text', array(
+                'required' => false,
+            ))
+            ->add('phone', 'text', array(
+                'required' => false,
+            ))
         ;
     }
     
@@ -37,6 +45,6 @@ class ProfileType extends AbstractType
      */
     public function getName()
     {
-        return 'bw_userbundle_profile';
+        return 'bw_profile';
     }
 }
