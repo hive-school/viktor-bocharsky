@@ -16,12 +16,15 @@ BW\UserBundle\Entity\User:
         password:
             type: string
             length: 64
+        salt:
+            type: string
+            length: 32
         email:
             type: string
             length: 60
             unique: true
-        isActive:
-            column: is_active
+        enabled:
+            column: enabled
             type: boolean
     oneToOne:
         profile:

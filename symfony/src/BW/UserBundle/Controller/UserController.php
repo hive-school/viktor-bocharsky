@@ -18,8 +18,9 @@ class UserController extends Controller
 {
 
     /**
-     * Lists all User entities.
+     * Lists all User entities
      *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction()
     {
@@ -31,9 +32,13 @@ class UserController extends Controller
             'entities' => $entities,
         ));
     }
+
     /**
-     * Creates a new User entity.
+     * Creates a new User entity
      *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function createAction(Request $request)
     {
@@ -51,17 +56,17 @@ class UserController extends Controller
 
         return $this->render('BWUserBundle:User:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
-    * Creates a form to create a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to create a User entity.
+     *
+     * @param User $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createCreateForm(User $entity)
     {
         $form = $this->createForm(new UserType(), $entity, array(
@@ -75,23 +80,27 @@ class UserController extends Controller
     }
 
     /**
-     * Displays a form to create a new User entity.
+     * Displays a form to create a new User entity
      *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newAction()
     {
         $entity = new User();
-        $form   = $this->createCreateForm($entity);
+        $form = $this->createCreateForm($entity);
 
         return $this->render('BWUserBundle:User:new.html.twig', array(
             'entity' => $entity,
-            'form'   => $form->createView(),
+            'form' => $form->createView(),
         ));
     }
 
     /**
-     * Finds and displays a User entity.
+     * Finds and displays a User entity
      *
+     * @param $id The user ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function showAction($id)
     {
@@ -106,13 +115,16 @@ class UserController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BWUserBundle:User:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'entity' => $entity,
+            'delete_form' => $deleteForm->createView(),));
     }
 
     /**
-     * Displays a form to edit an existing User entity.
+     * Displays a form to edit an existing User entity
      *
+     * @param $id The user ID
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction($id)
     {
@@ -128,19 +140,19 @@ class UserController extends Controller
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BWUserBundle:User:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
 
     /**
-    * Creates a form to edit a User entity.
-    *
-    * @param User $entity The entity
-    *
-    * @return \Symfony\Component\Form\Form The form
-    */
+     * Creates a form to edit a User entity.
+     *
+     * @param User $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createEditForm(User $entity)
     {
         $form = $this->createForm(new UserType(), $entity, array(
@@ -152,9 +164,14 @@ class UserController extends Controller
 
         return $form;
     }
+
     /**
-     * Edits an existing User entity.
+     * Edits an existing User entity
      *
+     * @param Request $request
+     * @param $id The user ID
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function updateAction(Request $request, $id)
     {
@@ -177,14 +194,19 @@ class UserController extends Controller
         }
 
         return $this->render('BWUserBundle:User:edit.html.twig', array(
-            'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'entity' => $entity,
+            'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
+
     /**
-     * Deletes a User entity.
+     * Deletes a User entity
      *
+     * @param Request $request
+     * @param $id the user ID
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteAction(Request $request, $id)
     {
@@ -219,10 +241,16 @@ class UserController extends Controller
             ->setAction($this->generateUrl('user_delete', array('id' => $id)))
             ->setMethod('DELETE')
             ->add('submit', 'submit', array('label' => 'Delete'))
-            ->getForm()
-        ;
+            ->getForm();
     }
 
+    /**
+     * The user sign in
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function signInAction(Request $request)
     {
         if ($this->getUser()) {
@@ -246,19 +274,25 @@ class UserController extends Controller
         // last username entered by the user
         $lastUsername = (null === $session)
             ? ''
-            : $session->get(SecurityContextInterface::LAST_USERNAME)
-        ;
+            : $session->get(SecurityContextInterface::LAST_USERNAME);
 
         return $this->render(
             'BWUserBundle:User:sign-in.html.twig',
             array(
                 // last username entered by the user
                 'last_username' => $lastUsername,
-                'error'         => $error,
+                'error' => $error,
             )
         );
     }
 
+    /**
+     * The user sign up
+     *
+     * @param Request $request
+     *
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     public function signUpAction(Request $request)
     {
         if ($this->getUser()) {
@@ -273,6 +307,19 @@ class UserController extends Controller
             $form->handleRequest($request);
             if ($form->isValid()) {
                 $em = $this->getDoctrine()->getManager();
+
+                // Encode password, input by user
+                $factory = $this->get('security.encoder_factory');
+                $encoder = $factory->getEncoder($user);
+                $password = $encoder->encodePassword($user->getPassword(), $user->getSalt());
+                $user->setPassword($password);
+
+                // Add default role to user
+                $role = $em->getRepository('BWUserBundle:Role')->findOneByRole('ROLE_USER');
+                if ($role) {
+                    $user->addRole($role);
+                }
+
                 $em->persist($user);
                 $em->flush();
                 $session->getFlashBag()->add(
@@ -291,4 +338,5 @@ class UserController extends Controller
             )
         );
     }
+
 }

@@ -2,7 +2,6 @@
 
 namespace BW\UserBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -28,14 +27,21 @@ class User implements UserInterface, \Serializable
     private $password = '';
 
     /**
+     * Generating automatically when object created
+     *
+     * @var string The salt
+     */
+    private $salt = '';
+
+    /**
      * @var string The email
      */
     private $email = '';
 
     /**
-     * @var bool Whether is active
+     * @var bool Whether is enabled
      */
-    private $isActive = true;
+    private $enabled = true;
 
     /**
      * @var ArrayCollection
@@ -48,31 +54,12 @@ class User implements UserInterface, \Serializable
     private $profile;
 
 
-    /**
-     * @inheritDoc
-     */
-    public function getUsername()
+    public function __construct()
     {
-        return $this->username;
+        $this->salt = md5(uniqid(null, true));
+        $this->roles = new ArrayCollection();
     }
 
-    /**
-     * @inheritDoc
-     */
-    public function getSalt()
-    {
-        // you *may* need a real salt depending on your encoder
-        // see section on salt below
-        return null;
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
 
     /**
      * @inheritDoc
@@ -90,8 +77,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt,
+            $this->salt,
         ));
     }
 
@@ -104,8 +90,7 @@ class User implements UserInterface, \Serializable
             $this->id,
             $this->username,
             $this->password,
-            // see section on salt below
-            // $this->salt
+            $this->salt
         ) = unserialize($serialized);
     }
 
@@ -126,7 +111,7 @@ class User implements UserInterface, \Serializable
 
     public function isEnabled()
     {
-        return $this->isActive;
+        return $this->enabled;
     }
 
     public function getRoles()
@@ -134,14 +119,8 @@ class User implements UserInterface, \Serializable
         return $this->roles->toArray();
     }
 
-    
-    public function __construct()
-    {
-        $this->roles = new ArrayCollection();
-        // may not be needed, see section on salt below
-        // $this->salt = md5(uniqid(null, true));
-    }
 
+    /* SETTERS / GETTERS */
 
     /**
      * Get id
@@ -168,6 +147,14 @@ class User implements UserInterface, \Serializable
     }
 
     /**
+     * @inheritDoc
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
      * Set password
      *
      * @param string $password
@@ -179,6 +166,22 @@ class User implements UserInterface, \Serializable
         $this->password = $password;
 
         return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        return $this->salt;
     }
 
     /**
@@ -206,27 +209,27 @@ class User implements UserInterface, \Serializable
     }
 
     /**
-     * Set isActive
+     * Set enabled
      *
-     * @param boolean $isActive
+     * @param boolean $enabled
      *
      * @return User
      */
-    public function setIsActive($isActive)
+    public function setEnabled($enabled)
     {
-        $this->isActive = $isActive;
+        $this->enabled = $enabled;
 
         return $this;
     }
 
     /**
-     * Get isActive
+     * Get enabled
      *
      * @return boolean 
      */
-    public function getIsActive()
+    public function getEnabled()
     {
-        return $this->isActive;
+        return $this->enabled;
     }
 
     /**
