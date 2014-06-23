@@ -1,4 +1,6 @@
-/vendor/
-/nbproject/
+/.DS_Store
 /.idea/
+/.vagrant/
 /composer.phar
+/nbproject/
+/vendor/
