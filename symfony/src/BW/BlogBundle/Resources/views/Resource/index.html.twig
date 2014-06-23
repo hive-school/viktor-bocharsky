@@ -14,45 +14,19 @@
                     </li>
                 </ul>
 
-                <table class="records_list">
-                    <thead>
-                    <tr>
-                        <th>Id</th>
-                        <th>Heading</th>
-                        <th>Description</th>
-                        <th>Link</th>
-                        <th>Read</th>
-                        <th>Liked</th>
-                        <th>Created</th>
-                        <th>Updated</th>
-                        <th>Actions</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for entity in entities %}
-                        <tr>
-                            <td><a href="{{ path('resource_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                            <td>{{ entity.heading }}</td>
-                            <td>{{ entity.description }}</td>
-                            <td>{{ entity.link }}</td>
-                            <td>{{ entity.read }}</td>
-                            <td>{{ entity.liked }}</td>
-                            <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
-                            <td>{% if entity.updated %}{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}</td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <a href="{{ path('resource_show', { 'id': entity.id }) }}">show</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{ path('resource_edit', { 'id': entity.id }) }}">edit</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                {% for entity in entities %}
+                    <h2 style="display: inline;" title="{{ entity.description }}">
+                        {{ entity.heading }}
+                    </h2>
+                        | <a href="{{ path('resource_edit', { 'id': entity.id }) }}">Edit</a>
+                        | <a href="delete" title="{{ entity.description }}">Delete</a>
+                    <div><a href="{{ entity.link }}">{{ entity.link|slice(0, 30) }}...</a></div>
+                    <div>
+                        Read: {{ entity.read ? 'yes' : 'no' }} |
+                        Liked: {{ entity.liked ? 'yes' : 'no' }} |
+                        Created: {% if entity.created %}{{ entity.created|date('d/m/y, H:i') }}{% endif %}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>

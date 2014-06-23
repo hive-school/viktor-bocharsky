@@ -23,7 +23,9 @@ class ResourceController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BWBlogBundle:Resource')->findAll();
+        $entities = $em->getRepository('BWBlogBundle:Resource')->findBy(array(), array(
+            'created' => 'DESC',
+        ));
 
         return $this->render('BWBlogBundle:Resource:index.html.twig', array(
             'entities' => $entities,
@@ -44,7 +46,7 @@ class ResourceController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('resource_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('resource'));
         }
 
         return $this->render('BWBlogBundle:Resource:new.html.twig', array(
@@ -171,7 +173,7 @@ class ResourceController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('resource_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('resource'));
         }
 
         return $this->render('BWBlogBundle:Resource:edit.html.twig', array(
