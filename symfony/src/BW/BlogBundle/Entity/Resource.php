@@ -287,6 +287,19 @@ class Resource
     }
 
     /**
+     * Set tags
+     *
+     * @var \Doctrine\Common\Collections\Collection $tags
+     * @return Resource
+     */
+    public function setTags(ArrayCollection $tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
      * Get tags
      *
      * @return \Doctrine\Common\Collections\Collection 
@@ -294,31 +307,6 @@ class Resource
     public function getTags()
     {
         return $this->tags;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getTagsString()
-    {
-        return implode(', ', $this->tags->toArray());
-    }
-
-    /**
-     * @param mixed $tagsString
-     * @return $this
-     */
-    public function setTagsString($tagsString)
-    {
-        // replace spaces before and after comma and comma in sequence to one comma
-        $tagsString = preg_replace('/\s*,+\s*/', ',', $tagsString);
-        // replace few spaces to one space
-        $tagsString = preg_replace('/\s+/', ' ', $tagsString);
-        // get tag array
-        $tagsString = explode(',', $tagsString);
-        $this->tags = new ArrayCollection($tagsString);
-
-        return $this;
     }
 
 }

@@ -32,6 +32,12 @@ class Tag
         $this->resources = new ArrayCollection();
     }
 
+    function __toString()
+    {
+        return (string)$this->getName();
+    }
+
+
 
     /* SETTERS / GETTERS */
 

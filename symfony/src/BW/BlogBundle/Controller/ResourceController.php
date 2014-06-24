@@ -144,6 +144,7 @@ class ResourceController extends Controller
     private function createEditForm(Resource $entity)
     {
         $form = $this->createForm(new ResourceType(), $entity, array(
+            'em' => $this->getDoctrine()->getManager(),
             'action' => $this->generateUrl('resource_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
