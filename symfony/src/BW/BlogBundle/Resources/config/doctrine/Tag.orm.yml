@@ -12,4 +12,8 @@ BW\BlogBundle\Entity\Tag:
         name:
             type: string
             length: 255
+    manyToMany:
+        resources:
+            targetEntity: BW\BlogBundle\Entity\Resource
+            mappedBy: tags
     lifecycleCallbacks: {  }

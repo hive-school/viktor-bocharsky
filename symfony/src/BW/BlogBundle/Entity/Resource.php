@@ -2,6 +2,7 @@
 
 namespace BW\BlogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,11 +51,17 @@ class Resource
      */
     private $updated;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $tags;
+
 
     public function __construct()
     {
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
+        $this->tags = new ArrayCollection();
     }
 
 
@@ -235,4 +242,83 @@ class Resource
     {
         return $this->updated;
     }
+
+    /**
+     * Get read
+     *
+     * @return boolean 
+     */
+    public function getRead()
+    {
+        return $this->read;
+    }
+
+    /**
+     * Get liked
+     *
+     * @return boolean 
+     */
+    public function getLiked()
+    {
+        return $this->liked;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \BW\BlogBundle\Entity\Tag $tags
+     * @return Resource
+     */
+    public function addTag(\BW\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \BW\BlogBundle\Entity\Tag $tags
+     */
+    public function removeTag(\BW\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTagsString()
+    {
+        return implode(', ', $this->tags->toArray());
+    }
+
+    /**
+     * @param mixed $tagsString
+     * @return $this
+     */
+    public function setTagsString($tagsString)
+    {
+        // replace spaces before and after comma and comma in sequence to one comma
+        $tagsString = preg_replace('/\s*,+\s*/', ',', $tagsString);
+        // replace few spaces to one space
+        $tagsString = preg_replace('/\s+/', ' ', $tagsString);
+        // get tag array
+        $tagsString = explode(',', $tagsString);
+        $this->tags = new ArrayCollection($tagsString);
+
+        return $this;
+    }
+
 }

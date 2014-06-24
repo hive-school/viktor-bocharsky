@@ -28,6 +28,12 @@ class ResourceType extends AbstractType
             ->add('liked', 'checkbox', array(
                 'required' => false,
             ))
+            ->add('tagsString', 'text', array(
+                'required' => false,
+                'attr' => array(
+                    'placeholder' => 'Enter tags, separated by comma...',
+                ),
+            ))
         ;
     }
     
@@ -46,6 +52,6 @@ class ResourceType extends AbstractType
      */
     public function getName()
     {
-        return 'bw_blogbundle_resource';
+        return 'bw_resource';
     }
 }
