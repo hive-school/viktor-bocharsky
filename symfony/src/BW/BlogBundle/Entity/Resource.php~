@@ -56,6 +56,11 @@ class Resource
      */
     private $tags;
 
+    /**
+     * @var \BW\UserBundle\Entity\User
+     */
+    private $user;
+
 
     public function __construct()
     {
@@ -242,4 +247,71 @@ class Resource
     {
         return $this->updated;
     }
+
+    /**
+     * Get read
+     *
+     * @return boolean 
+     */
+    public function getRead()
+    {
+        return $this->read;
+    }
+
+    /**
+     * Get liked
+     *
+     * @return boolean 
+     */
+    public function getLiked()
+    {
+        return $this->liked;
+    }
+
+    /**
+     * Add tags
+     *
+     * @param \BW\BlogBundle\Entity\Tag $tags
+     * @return Resource
+     */
+    public function addTag(\BW\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags[] = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Remove tags
+     *
+     * @param \BW\BlogBundle\Entity\Tag $tags
+     */
+    public function removeTag(\BW\BlogBundle\Entity\Tag $tags)
+    {
+        $this->tags->removeElement($tags);
+    }
+
+    /**
+     * Set tags
+     *
+     * @var \Doctrine\Common\Collections\Collection $tags
+     * @return Resource
+     */
+    public function setTags(ArrayCollection $tags)
+    {
+        $this->tags = $tags;
+
+        return $this;
+    }
+
+    /**
+     * Get tags
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
+
 }

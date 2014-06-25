@@ -1,3 +1,7 @@
 bw_blog_bundle_resource:
     resource: "@BWBlogBundle/Resources/config/routing/resource.yml"
     prefix:   /resource
+
+bw_blog_bundle_tag:
+    resource: "@BWBlogBundle/Resources/config/routing/tag.yml"
+    prefix:   /tag

@@ -56,6 +56,11 @@ class Resource
      */
     private $tags;
 
+    /**
+     * @var \BW\UserBundle\Entity\User
+     */
+    private $user;
+
 
     public function __construct()
     {
@@ -309,4 +314,27 @@ class Resource
         return $this->tags;
     }
 
+
+    /**
+     * Set user
+     *
+     * @param \BW\UserBundle\Entity\User $user
+     * @return Resource
+     */
+    public function setUser(\BW\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BW\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
 }

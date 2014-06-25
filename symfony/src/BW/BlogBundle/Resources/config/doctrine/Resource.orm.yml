@@ -26,6 +26,10 @@ BW\BlogBundle\Entity\Resource:
             type: datetime
         updated:
             type: datetime
+    manyToOne:
+        user:
+            targetEntity: BW\UserBundle\Entity\User
+            inversedBy: resources
     manyToMany:
         tags:
             targetEntity: BW\BlogBundle\Entity\Tag

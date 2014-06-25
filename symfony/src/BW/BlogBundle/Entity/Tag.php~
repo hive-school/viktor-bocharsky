@@ -32,6 +32,12 @@ class Tag
         $this->resources = new ArrayCollection();
     }
 
+    function __toString()
+    {
+        return (string)$this->getName();
+    }
+
+
 
     /* SETTERS / GETTERS */
 
@@ -66,5 +72,38 @@ class Tag
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Add resources
+     *
+     * @param \BW\BlogBundle\Entity\Resource $resources
+     * @return Tag
+     */
+    public function addResource(\BW\BlogBundle\Entity\Resource $resources)
+    {
+        $this->resources[] = $resources;
+
+        return $this;
+    }
+
+    /**
+     * Remove resources
+     *
+     * @param \BW\BlogBundle\Entity\Resource $resources
+     */
+    public function removeResource(\BW\BlogBundle\Entity\Resource $resources)
+    {
+        $this->resources->removeElement($resources);
+    }
+
+    /**
+     * Get resources
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResources()
+    {
+        return $this->resources;
     }
 }

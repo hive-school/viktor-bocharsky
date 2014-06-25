@@ -30,6 +30,10 @@ BW\UserBundle\Entity\User:
         profile:
             targetEntity: BW\UserBundle\Entity\Profile
             mappedBy: user
+    oneToMany:
+        resources:
+            targetEntity: BW\BlogBundle\Entity\Resource
+            mappedBy: user
     manyToMany:
         roles:
             targetEntity: BW\UserBundle\Entity\Role

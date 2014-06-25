@@ -53,6 +53,11 @@ class User implements UserInterface, \Serializable
      */
     private $profile;
 
+    /**
+     * @var ArrayCollection
+     */
+    private $resources;
+
 
     public function __construct()
     {
@@ -278,5 +283,51 @@ class User implements UserInterface, \Serializable
     public function getProfile()
     {
         return $this->profile;
+    }
+
+    /**
+     * Set salt
+     *
+     * @param string $salt
+     * @return User
+     */
+    public function setSalt($salt)
+    {
+        $this->salt = $salt;
+
+        return $this;
+    }
+
+    /**
+     * Add resources
+     *
+     * @param \BW\BlogBundle\Entity\Resource $resources
+     * @return User
+     */
+    public function addResource(\BW\BlogBundle\Entity\Resource $resources)
+    {
+        $this->resources[] = $resources;
+
+        return $this;
+    }
+
+    /**
+     * Remove resources
+     *
+     * @param \BW\BlogBundle\Entity\Resource $resources
+     */
+    public function removeResource(\BW\BlogBundle\Entity\Resource $resources)
+    {
+        $this->resources->removeElement($resources);
+    }
+
+    /**
+     * Get resources
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResources()
+    {
+        return $this->resources;
     }
 }

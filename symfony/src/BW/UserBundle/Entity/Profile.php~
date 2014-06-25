@@ -17,22 +17,22 @@ class Profile
     /**
      * @var string
      */
-    private $surname;
+    private $surname = '';
 
     /**
      * @var string
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var string
      */
-    private $patronymic;
+    private $patronymic = '';
 
     /**
      * @var string
      */
-    private $phone;
+    private $phone = '';
 
     /**
      * @var User
@@ -54,6 +54,7 @@ class Profile
      * Set surname
      *
      * @param string $surname
+     *
      * @return Profile
      */
     public function setSurname($surname)
@@ -77,6 +78,7 @@ class Profile
      * Set name
      *
      * @param string $name
+     *
      * @return Profile
      */
     public function setName($name)
@@ -100,6 +102,7 @@ class Profile
      * Set patronymic
      *
      * @param string $patronymic
+     *
      * @return Profile
      */
     public function setPatronymic($patronymic)
@@ -123,11 +126,12 @@ class Profile
      * Set phone
      *
      * @param string $phone
+     *
      * @return Profile
      */
     public function setPhone($phone)
     {
-        $this->phone = $phone;
+        $this->phone = preg_replace('/[^0-9]/', '', $phone);
 
         return $this;
     }
@@ -140,5 +144,29 @@ class Profile
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \BW\UserBundle\Entity\User $user
+     *
+     * @return Profile
+     */
+    public function setUser(\BW\UserBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BW\UserBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

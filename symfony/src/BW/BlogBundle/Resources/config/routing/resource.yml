@@ -2,6 +2,10 @@ resource:
     pattern:  /
     defaults: { _controller: "BWBlogBundle:Resource:index" }
 
+resource_tagged:
+    pattern:  /tagged/{id}
+    defaults: { _controller: "BWBlogBundle:Resource:tagged" }
+
 resource_show:
     pattern:  /{id}/show
     defaults: { _controller: "BWBlogBundle:Resource:show" }

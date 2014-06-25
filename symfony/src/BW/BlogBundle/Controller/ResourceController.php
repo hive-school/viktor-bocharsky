@@ -2,6 +2,7 @@
 
 namespace BW\BlogBundle\Controller;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -17,13 +18,17 @@ class ResourceController extends Controller
 
     /**
      * Lists all Resource entities.
-     *
      */
     public function indexAction()
     {
+        if ( ! $this->getUser()) {
+            return $this->redirect($this->generateUrl('user_sign_in'));
+        }
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('BWBlogBundle:Resource')->findBy(array(), array(
+        $entities = $em->getRepository('BWBlogBundle:Resource')->findBy(array(
+            'user' => $this->getUser(),
+        ), array(
             'created' => 'DESC',
         ));
 
@@ -31,9 +36,39 @@ class ResourceController extends Controller
             'entities' => $entities,
         ));
     }
+
+    /**
+     * Lists all tagged Resource entities.
+     */
+    public function taggedAction($id)
+    {
+        if ( ! $this->getUser()) {
+            return $this->redirect($this->generateUrl('user_sign_in'));
+        }
+        $em = $this->getDoctrine()->getManager();
+
+        $tag = $em->getRepository('BWBlogBundle:Tag')->find($id);
+        if ( ! $tag) {
+            throw $this->createNotFoundException("Tag with ID = '{$id}' not found!");
+        }
+
+        $entities = $em->getRepository('BWBlogBundle:Resource')
+            ->createQueryBuilder('r')
+            ->innerJoin('BWBlogBundle:Tag', 't')
+            ->where('r.user = :user')
+            ->andWhere('t.id = 24')
+            ->setParameter('user', $this->getUser())
+            ->getQuery()
+            ->getResult()
+        ;
+
+        return $this->render('BWBlogBundle:Resource:index.html.twig', array(
+            'entities' => $entities,
+        ));
+    }
+
     /**
      * Creates a new Resource entity.
-     *
      */
     public function createAction(Request $request)
     {
@@ -42,6 +77,7 @@ class ResourceController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
+            $entity->setUser($this->getUser());
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
@@ -65,6 +101,7 @@ class ResourceController extends Controller
     private function createCreateForm(Resource $entity)
     {
         $form = $this->createForm(new ResourceType(), $entity, array(
+            'em' => $this->getDoctrine()->getManager(),
             'action' => $this->generateUrl('resource_create'),
             'method' => 'POST',
         ));
@@ -91,7 +128,6 @@ class ResourceController extends Controller
 
     /**
      * Finds and displays a Resource entity.
-     *
      */
     public function showAction($id)
     {
@@ -219,7 +255,12 @@ class ResourceController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('resource_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->add('submit', 'submit', array(
+                'label' => 'Delete',
+                'attr' => array(
+                    'onclick' => "return confirm('Are You sure You want to delete entity?')",
+                ),
+            ))
             ->getForm()
         ;
     }

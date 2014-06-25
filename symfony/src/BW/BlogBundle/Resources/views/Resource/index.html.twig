@@ -14,19 +14,42 @@
                     </li>
                 </ul>
 
-                {% for entity in entities %}
-                    <h2 style="display: inline;" title="{{ entity.description }}">
-                        {{ entity.heading }}
-                    </h2>
-                        | <a href="{{ path('resource_edit', { 'id': entity.id }) }}">Edit</a>
-                        | <a href="delete" title="{{ entity.description }}">Delete</a>
-                    <div><a href="{{ entity.link }}">{{ entity.link|slice(0, 30) }}...</a></div>
-                    <div>
-                        Read: {{ entity.read ? 'yes' : 'no' }} |
-                        Liked: {{ entity.liked ? 'yes' : 'no' }} |
-                        Created: {% if entity.created %}{{ entity.created|date('d/m/y, H:i') }}{% endif %}
+                {% if entities %}
+                    <div class="tags">
+                        {% for entity in entities %}
+                            {% if entity.tags.count %}
+                                {% for tag in entity.tags %}
+                                    <a href="{{ path('resource_tagged', {'id': tag.id}) }}">{{ tag.name }}</a>
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                {% endif %}
+
+
+                {% if entities %}
+                    <div class="resource">
+                        {% for entity in entities %}
+                            <h2 style="display: inline;" title="{{ entity.description }}">
+                                {{ entity.heading }}
+                            </h2>
+                                | <a href="{{ path('resource_edit', { 'id': entity.id }) }}">Edit</a>
+                            <div><a href="{{ entity.link }}">{{ entity.link }}</a></div>
+                            <div class="actions">
+                                Read: {{ entity.read ? 'yes' : 'no' }} |
+                                Liked: {{ entity.liked ? 'yes' : 'no' }} |
+                                Created: {% if entity.created %}{{ entity.created|date('d/m/y, H:i') }}{% endif %}
+                            </div>
+                            {% if entity.tags.count %}
+                                <div class="tags">
+                                    {% for tag in entity.tags %}
+                                        <a href="{{ path('resource_tagged', {'id': tag.id}) }}">{{ tag.name }}</a>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>

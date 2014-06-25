@@ -3,6 +3,7 @@
 namespace BW\BlogBundle\Form\DataTransformer;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Form\DataTransformerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use BW\BlogBundle\Entity\Tag;
@@ -30,11 +31,11 @@ class TagsToStringTransformer implements DataTransformerInterface
      */
     public function transform($tags)
     {
-        if ($tags instanceof ArrayCollection) {
-            throw new \InvalidArgumentException('Expected instance of Doctrine\Common\Collections\ArrayCollection');
+        if ($tags instanceof Collection) {
+            return implode(', ', $tags->toArray());
         }
 
-        return implode(', ', $tags->toArray());
+        return "";
     }
 
     /**
@@ -48,15 +49,16 @@ class TagsToStringTransformer implements DataTransformerInterface
     {
         $tags = new ArrayCollection();
 
-        $resource = $this->om
-            ->getRepository('BWBlogBundle:Resource')
-            ->find(1) // @TODO MUST BE DYNAMIC !!!
-        ;
-
-        // replace spaces before and after comma and comma in sequence to one comma
-        $string = preg_replace('/\s*,+\s*/', ',', $string);
-        // replace few spaces to one space
+        // replace few spaces with one space
         $string = preg_replace('/\s+/', ' ', $string);
+        // replace empty tags with one comma
+        $string = preg_replace('/,\s+,/', ',', $string);
+        // replace few commas with one comma
+        $string = preg_replace('/\s*,+\s*/', ',', $string);
+        // remove commas at start/end
+        $string = preg_replace('/^\s*,*|,*\s*$/', '', $string);
+        // tags to lower case
+        $string = strtolower($string);
         // get tag array
         $tagNames = explode(',', $string);
         foreach ($tagNames as $tagName) {
@@ -71,7 +73,6 @@ class TagsToStringTransformer implements DataTransformerInterface
             }
             $tags->add($tag);
         }
-        $resource->setTags($tags);
 
         return $tags;
     }
