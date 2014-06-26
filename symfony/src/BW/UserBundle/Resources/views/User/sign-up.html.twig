@@ -1,11 +1,19 @@
 {% extends 'BWSkeletonBundle:Frontend:layout.html.twig' %}
 
+{% block title %}Sign Up{% endblock %}
+
 {% block content_wrap %}
-    <h1>Sign Up</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1>Sign Up</h1>
 
-    {{ form(form) }}
+            {{ form(form) }}
 
-    <div>
-        Already has account? <a href="{{ path('user_sign_in') }}">Sign in</a>!
+            <div>
+                Already has account? <a href="{{ path('user_sign_in') }}">Sign in</a>!
+            </div>
+        </div>
     </div>
+</div>
 {% endblock %}

@@ -31,9 +31,11 @@ class ResourceController extends Controller
         ), array(
             'created' => 'DESC',
         ));
+        $resources = new ArrayCollection($entities);
 
         return $this->render('BWBlogBundle:Resource:index.html.twig', array(
             'entities' => $entities,
+            'resources' => $resources,
         ));
     }
 
@@ -51,19 +53,33 @@ class ResourceController extends Controller
         if ( ! $tag) {
             throw $this->createNotFoundException("Tag with ID = '{$id}' not found!");
         }
+        $tag_id = $tag->getId();
 
-        $entities = $em->getRepository('BWBlogBundle:Resource')
-            ->createQueryBuilder('r')
-            ->innerJoin('BWBlogBundle:Tag', 't')
-            ->where('r.user = :user')
-            ->andWhere('t.id = 24')
-            ->setParameter('user', $this->getUser())
-            ->getQuery()
-            ->getResult()
-        ;
+//        $entities = $em->getRepository('BWBlogBundle:Resource')
+//            ->createQueryBuilder('r')
+//            ->leftJoin('BWBlogBundle:Tag', 't')
+//            ->where('r.user = :user')
+//            ->andWhere('t.id = 1')
+//            ->setParameter('user', $this->getUser())
+//            ->getQuery()
+//            ->getResult()
+//        ;
+
+        $entities = $em->getRepository('BWBlogBundle:Resource')->findBy(array(
+            'user' => $this->getUser(),
+        ), array(
+            'created' => 'DESC',
+        ));
+        $resources = new ArrayCollection($entities);
+        $resources = $resources->filter(function($resource) use ($tag_id) {
+            return $resource->getTags()->filter(function($tag) use ($tag_id) {
+                return $tag->getId() === $tag_id;
+            })->count();
+        });
 
         return $this->render('BWBlogBundle:Resource:index.html.twig', array(
             'entities' => $entities,
+            'resources' => $resources,
         ));
     }
 

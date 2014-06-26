@@ -15,9 +15,7 @@
         <link href="{{ asset('libs/bootstrap-3.1.1/less/bootstrap.less') }}" type="text/css" rel="stylesheet/less">
     {% endstylesheets %}
     #}
-    {% stylesheets 'libs/bootstrap-3.1.1/less/bootstrap.less' filter="less" output="assetic/bootstrap.css" %}
-        <link rel="stylesheet" href="{{ asset_url }}" type="text/css" rel="stylesheet"/>
-    {% endstylesheets %}
+    <link href="{{ asset('libs/bootstrap-3.1.1/dist/css/bootstrap.min.css') }}" type="text/css" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
 {% endblock %}
 

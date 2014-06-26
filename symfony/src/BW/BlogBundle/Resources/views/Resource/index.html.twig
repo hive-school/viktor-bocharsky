@@ -1,5 +1,7 @@
 {% extends '@BWSkeleton/Frontend/layout.html.twig' %}
 
+{% block title %}Resource list{% endblock %}
+
 {% block content -%}
     <div class="container">
         <div class="row">
@@ -16,6 +18,7 @@
 
                 {% if entities %}
                     <div class="tags">
+                        <a href="{{ path('resource') }}">all tags</a> ::
                         {% for entity in entities %}
                             {% if entity.tags.count %}
                                 {% for tag in entity.tags %}
@@ -27,22 +30,22 @@
                 {% endif %}
 
 
-                {% if entities %}
+                {% if resources.count %}
                     <div class="resource">
-                        {% for entity in entities %}
-                            <h2 style="display: inline;" title="{{ entity.description }}">
-                                {{ entity.heading }}
+                        {% for resource in resources %}
+                            <h2 style="display: inline;" title="{{ resource.description }}">
+                                {{ resource.heading }}
                             </h2>
-                                | <a href="{{ path('resource_edit', { 'id': entity.id }) }}">Edit</a>
-                            <div><a href="{{ entity.link }}">{{ entity.link }}</a></div>
+                                | <a href="{{ path('resource_edit', { 'id': resource.id }) }}">Edit</a>
+                            <div><a href="{{ resource.link }}">{{ resource.link }}</a></div>
                             <div class="actions">
-                                Read: {{ entity.read ? 'yes' : 'no' }} |
-                                Liked: {{ entity.liked ? 'yes' : 'no' }} |
-                                Created: {% if entity.created %}{{ entity.created|date('d/m/y, H:i') }}{% endif %}
+                                Read: {{ resource.read ? 'yes' : 'no' }} |
+                                Liked: {{ resource.liked ? 'yes' : 'no' }} |
+                                Created: {% if resource.created %}{{ resource.created|date('d/m/y, H:i') }}{% endif %}
                             </div>
-                            {% if entity.tags.count %}
+                            {% if resource.tags.count %}
                                 <div class="tags">
-                                    {% for tag in entity.tags %}
+                                    {% for tag in resource.tags %}
                                         <a href="{{ path('resource_tagged', {'id': tag.id}) }}">{{ tag.name }}</a>
                                     {% endfor %}
                                 </div>
