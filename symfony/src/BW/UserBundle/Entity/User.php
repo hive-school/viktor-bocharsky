@@ -63,6 +63,7 @@ class User implements UserInterface, \Serializable
     {
         $this->salt = md5(uniqid(null, true));
         $this->roles = new ArrayCollection();
+        $this->resources = new ArrayCollection();
     }
 
 
