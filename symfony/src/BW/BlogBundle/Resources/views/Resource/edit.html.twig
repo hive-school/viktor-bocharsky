@@ -5,14 +5,14 @@
 {% block content -%}
 <div class="container">
     <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-4 col-lg-offset-4">
             <h1>Resource edit</h1>
 
-            {{ form(edit_form) }}
+            {% include 'BWBlogBundle:Resource:form.html.twig' %}
 
-            <ul class="record_actions">
-                <li>{{ form(delete_form) }}</li>
-            </ul>
+            <br/>
+
+            {{ form(delete_form) }}
         </div>
     </div>
 </div>

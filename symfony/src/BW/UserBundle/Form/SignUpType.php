@@ -16,12 +16,25 @@ class SignUpType extends AbstractType
     {
         $builder
             ->add('username', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
             ->add('password', 'password', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
             ->add('email', 'email', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
-            ->add('signUp', 'submit')
+            ->add('signUp', 'submit', array(
+                'attr' => array(
+                    'class' => 'btn btn-success',
+                ),
+            ))
         ;
     }
     

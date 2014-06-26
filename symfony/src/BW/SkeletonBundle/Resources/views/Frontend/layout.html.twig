@@ -31,32 +31,51 @@
 {% block header %}
     <header id="header">
         {% block header_wrap %}
-            <ul>
-                <li>
-                    <a href="{{ path('home') }}">Home</a>
-                </li>
-                <li>
-                    <a href="{{ path('about') }}">About</a>
-                </li>
-                {% if app.user %}
-                <li>
-                    <a href="{{ path('resource') }}">Resources</a>
-                </li>
-                <li>
-                    <a href="{{ path('profile_edit') }}">Profile</a>
-                </li>
-                <li>
-                    <a href="{{ path('user_sign_out') }}">Sign out</a>
-                </li>
-                {% else %}
-                <li>
-                    <a href="{{ path('user_sign_in') }}">Sign in</a>
-                </li>
-                <li>
-                    <a href="{{ path('user_sign_up') }}">Sign up</a>
-                </li>
-                {% endif %}
-            </ul>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <nav class="navbar navbar-default" role="navigation">
+                            <div class="container-fluid">
+                                <!-- Brand and toggle get grouped for better mobile display -->
+                                <div class="navbar-header">
+                                    <a class="navbar-brand" href="{{ path('home') }}">Home</a>
+                                </div>
+
+                                <!-- Collect the nav links, forms, and other content for toggling -->
+                                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                    <ul class="nav navbar-nav">
+                                        <li>
+                                            <a href="{{ path('about') }}">About</a>
+                                        </li>
+                                    </ul>
+                                    <ul class="nav navbar-nav navbar-right">
+                                        {% if app.user %}
+                                            <li>
+                                                <a href="{{ path('profile_edit') }}" title="Edit profile">Hello, <b>{{ app.user.profile
+                                                    ? (app.user.profile.name
+                                                        ? app.user.profile.name
+                                                        : app.user.username)
+                                                    : app.user.username
+                                                }}</b></a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('user_sign_out') }}">Sign out</a>
+                                            </li>
+                                        {% else %}
+                                            <li>
+                                                <a href="{{ path('user_sign_in') }}">Sign in</a>
+                                            </li>
+                                            <li>
+                                                <a href="{{ path('user_sign_up') }}">Sign up</a>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                </div><!-- /.navbar-collapse -->
+                            </div><!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
         {% endblock %}
     </header>
 {% endblock %}

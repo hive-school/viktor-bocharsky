@@ -20,34 +20,40 @@ class ResourceType extends AbstractType
         $transformer = new TagsToStringTransformer($entityManager);
 
         $builder
-            ->add('link', 'url', array(
-            ))
-            ->add('heading', 'text', array(
-            ))
-            ->add('description', 'textarea', array(
-                'required' => false,
-            ))
             ->add('read', 'checkbox', array(
                 'required' => false,
+                'label' => 'Read ',
             ))
             ->add('liked', 'checkbox', array(
                 'required' => false,
+                'label' => 'Liked ',
+            ))
+            ->add('link', 'url', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+            ))
+            ->add('heading', 'text', array(
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+            ))
+            ->add('description', 'textarea', array(
+                'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
             ->add(
                 $builder->create('tags', 'text', array(
                     'required' => false,
                     'attr' => array(
                         'placeholder' => 'Enter tags, separated by comma...',
+                        'class' => 'form-control',
                     )
                 ))->addModelTransformer($transformer)
             )
-            // add a normal text field, but add your transformer to it
-//            ->addModelTransformer($transformer)
         ;
-//        $builder->add(
-//            $builder->create('issue', 'text')
-//                ->addModelTransformer($transformer)
-//        );
     }
     
     /**

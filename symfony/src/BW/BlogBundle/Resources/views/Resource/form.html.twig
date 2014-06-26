@@ -1,0 +1,35 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col-lg-3">
+        {{ form_widget(form.liked) }}
+        {{ form_label(form.liked) }}
+    </div>
+
+    <div class="col-lg-3">
+        {{ form_widget(form.read) }}
+        {{ form_label(form.read) }}
+    </div>
+</div>
+
+<div>
+</div>
+
+<div class="form-group">
+    {{ form_row(form.link) }}
+</div>
+
+<div class="form-group">
+    {{ form_row(form.heading) }}
+</div>
+
+<div class="form-group">
+    {{ form_row(form.description) }}
+</div>
+
+<div class="form-group">
+    {{ form_row(form.tags) }}
+</div>
+
+{{ form_end(form) }}
+

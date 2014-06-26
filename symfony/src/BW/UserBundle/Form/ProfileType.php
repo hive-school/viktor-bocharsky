@@ -17,15 +17,31 @@ class ProfileType extends AbstractType
         $builder
             ->add('surname', 'text', array(
                 'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
             ->add('name', 'text', array(
                 'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
             ->add('patronymic', 'text', array(
                 'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
             ))
             ->add('phone', 'text', array(
                 'required' => false,
+                'attr' => array(
+                    'class' => 'form-control',
+                ),
+            ))
+            ->add('update', 'submit', array(
+                'label' => 'Update',
+
             ))
         ;
     }

@@ -8,6 +8,10 @@ class MainController extends Controller
 {
     public function homeAction()
     {
+        if ($this->getUser()) {
+            return $this->redirect($this->generateUrl('resource'));
+        }
+
         return $this->render('BWMainBundle:Main:home.html.twig');
     }
 

@@ -122,7 +122,12 @@ class ResourceController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+        $form->add('submit', 'submit', array(
+            'label' => 'Create',
+            'attr' => array(
+                'class' => 'btn btn-primary',
+            ),
+        ));
 
         return $form;
     }
@@ -176,12 +181,12 @@ class ResourceController extends Controller
             throw $this->createNotFoundException('Unable to find Resource entity.');
         }
 
-        $editForm = $this->createEditForm($entity);
+        $form = $this->createEditForm($entity);
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BWBlogBundle:Resource:edit.html.twig', array(
             'entity'      => $entity,
-            'edit_form'   => $editForm->createView(),
+            'form'        => $form->createView(),
             'delete_form' => $deleteForm->createView(),
         ));
     }
@@ -201,7 +206,12 @@ class ResourceController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array(
+            'label' => 'Update',
+            'attr' => array(
+                'class' => 'btn btn-primary',
+            ),
+        ));
 
         return $form;
     }
@@ -274,6 +284,7 @@ class ResourceController extends Controller
             ->add('submit', 'submit', array(
                 'label' => 'Delete',
                 'attr' => array(
+                    'class' => 'btn btn-danger',
                     'onclick' => "return confirm('Are You sure You want to delete entity?')",
                 ),
             ))

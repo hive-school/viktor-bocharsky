@@ -6,53 +6,50 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h1>Resource list</h1>
-
-                <ul>
-                    <li>
-                        <a href="{{ path('resource_new') }}">
-                            Add
-                        </a>
-                    </li>
-                </ul>
-
+                <h1 style="display: inline-block;">
+                    Resource list
+                    <a class="btn btn-primary" href="{{ path('resource_new') }}">Add</a>
+                </h1>
                 {% if entities %}
-                    <div class="tags">
-                        <a href="{{ path('resource') }}">all tags</a> ::
+                    <div class="tags" style="padding-bottom: 20px;">
+                        <a class="label label-danger" href="{{ path('resource') }}">all tags</a> ::
                         {% for entity in entities %}
                             {% if entity.tags.count %}
                                 {% for tag in entity.tags %}
-                                    <a href="{{ path('resource_tagged', {'id': tag.id}) }}">{{ tag.name }}</a>
+                                    <a class="label label-primary" href="{{ path('resource_tagged', {'id': tag.id}) }}">{{ tag.name }}</a>
                                 {% endfor %}
                             {% endif %}
                         {% endfor %}
                     </div>
                 {% endif %}
 
-
-                {% if resources.count %}
-                    <div class="resource">
+                <div class="resources" style="padding-bottom: 20px;">
+                    {% if resources.count %}
                         {% for resource in resources %}
-                            <h2 style="display: inline;" title="{{ resource.description }}">
-                                {{ resource.heading }}
-                            </h2>
-                                | <a href="{{ path('resource_edit', { 'id': resource.id }) }}">Edit</a>
-                            <div><a href="{{ resource.link }}">{{ resource.link }}</a></div>
-                            <div class="actions">
-                                Read: {{ resource.read ? 'yes' : 'no' }} |
-                                Liked: {{ resource.liked ? 'yes' : 'no' }} |
-                                Created: {% if resource.created %}{{ resource.created|date('d/m/y, H:i') }}{% endif %}
-                            </div>
-                            {% if resource.tags.count %}
-                                <div class="tags">
-                                    {% for tag in resource.tags %}
-                                        <a href="{{ path('resource_tagged', {'id': tag.id}) }}">{{ tag.name }}</a>
-                                    {% endfor %}
+                            <div class="resources" style="padding-bottom: 20px;">
+                                <h2 style="display: inline;" title="{{ resource.description }}">
+                                    {{ resource.heading }}
+                                </h2>
+                                    <a class="label label-warning" href="{{ path('resource_edit', { 'id': resource.id }) }}">Edit</a>
+                                <div><a href="{{ resource.link }}">{{ resource.link }}</a></div>
+                                <div class="actions">
+                                    Read: {{ resource.read ? '<span class="label label-success">yes</span>' : '<span class="label label-default">no</span>' }} |
+                                    Liked: {{ resource.liked ? '<span class="label label-success">yes</span>' : '<span class="label label-default">no</span>' }} |
+                                    Created: {% if resource.created %}<span class="label label-default">{{ resource.created|date('d/m/y, H:i') }}</span>{% endif %}
                                 </div>
-                            {% endif %}
+                                {% if resource.tags.count %}
+                                    <div class="tags">
+                                        {% for tag in resource.tags %}
+                                            <a class="label label-primary" href="{{ path('resource_tagged', {'id': tag.id}) }}">{{ tag.name }}</a>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        {% else %}
+                            <p style="text-align: center;">There are no any resources</p>
                         {% endfor %}
-                    </div>
-                {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
