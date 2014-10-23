@@ -1,0 +1,5 @@
+bu_blog:
+    resource: "@BUBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
