@@ -48,6 +48,12 @@ class Comment
     private $user;
 
 
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
+
+
     /**
      * Get id
      *

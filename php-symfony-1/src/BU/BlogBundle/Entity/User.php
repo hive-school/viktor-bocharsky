@@ -62,6 +62,14 @@ class User
         $this->comments = new ArrayCollection();
     }
 
+    public function __toString()
+    {
+        return implode(' ', [
+            $this->lastName,
+            $this->firstName,
+        ]);
+    }
+
 
     /**
      * Get id
