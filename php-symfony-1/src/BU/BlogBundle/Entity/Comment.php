@@ -35,6 +35,18 @@ class Comment
      */
     private $createdAt;
 
+    /**
+     * @var Post
+     * @ORM\ManyToOne(targetEntity="BU\BlogBundle\Entity\Post", inversedBy="comments")
+     */
+    private $post;
+
+    /**
+     * @var User
+     * @ORM\ManyToOne(targetEntity="BU\BlogBundle\Entity\User", inversedBy="comments")
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -90,5 +102,37 @@ class Comment
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @param \BU\BlogBundle\Entity\Post $post
+     */
+    public function setPost($post)
+    {
+        $this->post = $post;
+    }
+
+    /**
+     * @return \BU\BlogBundle\Entity\Post
+     */
+    public function getPost()
+    {
+        return $this->post;
+    }
+
+    /**
+     * @param \BU\BlogBundle\Entity\User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+    /**
+     * @return \BU\BlogBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

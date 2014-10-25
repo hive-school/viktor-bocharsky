@@ -2,6 +2,7 @@
 
 namespace BU\BlogBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -27,6 +28,18 @@ class Category
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="BU\BlogBundle\Entity\Post", mappedBy="category")
+     */
+    private $posts;
+
+
+    public function __construct()
+    {
+        $this->posts = new ArrayCollection();
+    }
 
 
     /**
@@ -60,5 +73,21 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param \Doctrine\Common\Collections\ArrayCollection $posts
+     */
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+    }
+
+    /**
+     * @return \Doctrine\Common\Collections\ArrayCollection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }
