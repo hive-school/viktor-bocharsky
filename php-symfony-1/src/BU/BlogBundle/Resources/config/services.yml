@@ -1,0 +1,6 @@
+parameters:
+
+services:
+    slugger:
+        class: BU\BlogBundle\Service\SluggerService
+        arguments: []
