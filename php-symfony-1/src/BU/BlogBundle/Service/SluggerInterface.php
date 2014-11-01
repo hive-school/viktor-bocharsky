@@ -13,5 +13,5 @@ interface SluggerInterface
      *
      * @return string
      */
-    public function toSlug($string);
+    public function Slugify($string);
 }

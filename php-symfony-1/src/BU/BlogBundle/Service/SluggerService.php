@@ -11,12 +11,16 @@ class SluggerService implements SluggerInterface
     /**
      * @var string
      */
-    private $pattern;
+    private $pattern = '#[^0-9A-Za-z_-]+#';
+
+    /**
+     * @var bool
+     */
+    private $lowerCase = true;
 
 
-    public function __construct($pattern = '@[^0-9A-Za-z_-]@')
+    public function __construct()
     {
-        $this->pattern = $pattern;
     }
 
 
@@ -25,8 +29,52 @@ class SluggerService implements SluggerInterface
      *
      * @return string
      */
-    public function toSlug($string)
+    public function slugify($string)
     {
-        return preg_replace($this->pattern, '', $string);
+        $slug = preg_replace($this->pattern, '-', $string); // replace all forbidden chars with hyphen
+        $slug = trim($slug, '-'); // trimmed hyphens at begin/end of slug
+        $slug = strtolower($slug); // transform slug to lower case
+
+        return $slug;
     }
-} 
+
+    /**
+     * @param string $pattern
+     *
+     * @return $this
+     */
+    public function setPattern($pattern)
+    {
+        $this->pattern = (string)$pattern;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPattern()
+    {
+        return $this->pattern;
+    }
+
+    /**
+     * @param bool $lowerCase
+     *
+     * @return $this
+     */
+    public function setLowerCase($lowerCase)
+    {
+        $this->lowerCase = (bool)$lowerCase;
+
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isLowerCase()
+    {
+        return $this->lowerCase;
+    }
+}

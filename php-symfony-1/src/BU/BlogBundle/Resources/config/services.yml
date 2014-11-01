@@ -3,4 +3,12 @@ parameters:
 services:
     slugger:
         class: BU\BlogBundle\Service\SluggerService
-        arguments: []
+        calls:
+            - [setPattern, ['#[^0-9A-Za-z_-]+#']]
+            - [setLowerCase, [true]]
+
+    bu_blog.event_subscriber.slugger:
+        class: BU\BlogBundle\EventSubscriber\SluggerEventSubscriber
+        arguments: ['@slugger']
+        tags:
+            - { name: doctrine.event_subscriber }

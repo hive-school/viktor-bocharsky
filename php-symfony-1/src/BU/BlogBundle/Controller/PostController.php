@@ -191,6 +191,10 @@ class PostController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
+//            $slug = $entity->getSlug();
+//            $slug = $this->get('slugger')->slugify($slug);
+//            $entity->setSlug($slug);
+
             $em->flush();
 
             return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));

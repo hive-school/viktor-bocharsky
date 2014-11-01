@@ -37,6 +37,13 @@ class Post
     private $text;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="BU\BlogBundle\Entity\Comment", mappedBy="post")
      */
@@ -120,6 +127,26 @@ class Post
     public function getText()
     {
         return $this->text;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
