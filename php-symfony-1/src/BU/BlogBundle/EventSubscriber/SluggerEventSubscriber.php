@@ -40,30 +40,24 @@ class SluggerEventSubscriber implements EventSubscriber
 
     public function prePersist(LifecycleEventArgs $args)
     {
-        /** @var Post $entity */
-        $entity = $args->getEntity();
-        $em = $args->getEntityManager();
-
-        if ($entity instanceof Post) {
-            $this->slugify($entity);
-        }
+        $this->handle($args);
     }
 
     public function preUpdate(LifecycleEventArgs $args)
     {
+        $this->handle($args);
+    }
+
+    private function handle(LifecycleEventArgs $args)
+    {
         /** @var Post $entity */
         $entity = $args->getEntity();
         $em = $args->getEntityManager();
 
         if ($entity instanceof Post) {
-            $this->slugify($entity);
+            $slug = $entity->getSlug();
+            $slug = $this->slugger->slugify($slug);
+            $entity->setSlug($slug);
         }
-    }
-
-    private function slugify(Post $entity)
-    {
-        $slug = $entity->getSlug();
-        $slug = $this->slugger->slugify($slug);
-        $entity->setSlug($slug);
     }
 }
