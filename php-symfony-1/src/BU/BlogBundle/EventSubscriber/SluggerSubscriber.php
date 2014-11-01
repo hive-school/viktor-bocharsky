@@ -8,11 +8,14 @@ use Doctrine\ORM\Event\LifecycleEventArgs;
 use BU\BlogBundle\Entity\Post;
 
 /**
- * Class SluggerEventSubscriber
- * @package BU\BlogBundle\EventListener
+ * Class SluggerSubscriber
+ * @package BU\BlogBundle\EventSubscriber
  */
-class SluggerEventSubscriber implements EventSubscriber
+class SluggerSubscriber implements EventSubscriber
 {
+    const PRE_PERSIST = 'prePersist';
+    const PRE_UPDATE = 'preUpdate';
+
     /**
      * @var \BU\BlogBundle\Service\SluggerService
      */
@@ -40,15 +43,15 @@ class SluggerEventSubscriber implements EventSubscriber
 
     public function prePersist(LifecycleEventArgs $args)
     {
-        $this->handle($args);
+        $this->handle($args, self::PRE_PERSIST);
     }
 
     public function preUpdate(LifecycleEventArgs $args)
     {
-        $this->handle($args);
+        $this->handle($args, self::PRE_UPDATE);
     }
 
-    private function handle(LifecycleEventArgs $args)
+    private function handle(LifecycleEventArgs $args, $event)
     {
         /** @var Post $entity */
         $entity = $args->getEntity();
