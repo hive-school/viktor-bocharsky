@@ -16,6 +16,9 @@ class CategoryType extends AbstractType
     {
         $builder
             ->add('name')
+            ->add('slug', 'text', [
+                'required' => false,
+            ])
         ;
     }
     
@@ -34,6 +37,6 @@ class CategoryType extends AbstractType
      */
     public function getName()
     {
-        return 'bu_blogbundle_category';
+        return 'bu_blog_category';
     }
 }

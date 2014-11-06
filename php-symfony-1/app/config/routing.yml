@@ -3,3 +3,7 @@ bu_blog:
     type:     annotation
     prefix:   /
 
+bu_app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+    prefix:   /

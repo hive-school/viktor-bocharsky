@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="categories")
  * @ORM\Entity
  */
-class Category
+class Category implements SluggableInterface
 {
     /**
      * @var integer
@@ -30,6 +30,13 @@ class Category
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="BU\BlogBundle\Entity\Post", mappedBy="category")
      */
@@ -46,6 +53,14 @@ class Category
         return $this->name;
     }
 
+
+    public function getStringForSlugging()
+    {
+        return $this->name;
+    }
+
+
+    /* SETTERS / GETTERS */
 
     /**
      * Get id
@@ -78,6 +93,26 @@ class Category
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $slug
+     *
+     * @return Post
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
