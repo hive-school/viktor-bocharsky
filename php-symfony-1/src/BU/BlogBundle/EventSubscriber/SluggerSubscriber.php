@@ -2,6 +2,7 @@
 
 namespace BU\BlogBundle\EventSubscriber;
 
+use BU\BlogBundle\Entity\SluggableInterface;
 use BU\BlogBundle\Service\SluggerService;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -13,9 +14,6 @@ use BU\BlogBundle\Entity\Post;
  */
 class SluggerSubscriber implements EventSubscriber
 {
-    const PRE_PERSIST = 'prePersist';
-    const PRE_UPDATE = 'preUpdate';
-
     /**
      * @var \BU\BlogBundle\Service\SluggerService
      */
@@ -43,22 +41,26 @@ class SluggerSubscriber implements EventSubscriber
 
     public function prePersist(LifecycleEventArgs $args)
     {
-        $this->handle($args, self::PRE_PERSIST);
+        $this->handle($args);
     }
 
     public function preUpdate(LifecycleEventArgs $args)
     {
-        $this->handle($args, self::PRE_UPDATE);
+        $this->handle($args);
     }
 
-    private function handle(LifecycleEventArgs $args, $event)
+    private function handle(LifecycleEventArgs $args)
     {
         /** @var Post $entity */
         $entity = $args->getEntity();
-        $em = $args->getEntityManager();
 
-        if ($entity instanceof Post) {
-            $slug = $entity->getSlug();
+        if ($entity instanceof SluggableInterface) {
+            if ($entity->getSlug()) {
+                $slug = $entity->getSlug();
+            } else {
+                $slug = $entity->getStringForSlugging();
+            }
+
             $slug = $this->slugger->slugify($slug);
             $entity->setSlug($slug);
         }

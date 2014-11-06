@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="posts")
  * @ORM\Entity
  */
-class Post
+class Post implements SluggableInterface
 {
     /**
      * @var integer
@@ -72,6 +72,14 @@ class Post
         return $this->name;
     }
 
+
+    public function getStringForSlugging()
+    {
+        return $this->name;
+    }
+
+
+    /* SETTERS / GETTERS */
 
     /**
      * Get id

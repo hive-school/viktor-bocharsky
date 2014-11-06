@@ -17,7 +17,9 @@ class PostType extends AbstractType
         $builder
             ->add('name')
             ->add('text')
-            ->add('slug')
+            ->add('slug', 'text', [
+                'required' => false,
+            ])
             ->add('category')
             ->add('user')
         ;
@@ -38,6 +40,6 @@ class PostType extends AbstractType
      */
     public function getName()
     {
-        return 'bu_blogbundle_post';
+        return 'bu_blog_post';
     }
 }
