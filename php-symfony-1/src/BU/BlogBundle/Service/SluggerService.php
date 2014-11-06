@@ -33,7 +33,9 @@ class SluggerService implements SluggerInterface
     {
         $slug = preg_replace($this->pattern, '-', $string); // replace all forbidden chars with hyphen
         $slug = trim($slug, '-'); // trimmed hyphens at begin/end of slug
-        $slug = strtolower($slug); // transform slug to lower case
+        if (true === $this->isLowerCase()) {
+            $slug = strtolower($slug); // transform slug to lower case
+        }
 
         return $slug;
     }

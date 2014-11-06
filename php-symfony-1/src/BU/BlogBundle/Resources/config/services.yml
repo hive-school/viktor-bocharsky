@@ -8,6 +8,7 @@ services:
             - [setLowerCase, [true]]
 
     bu_blog.event_subscriber.slugger:
+        public: false
         class: BU\BlogBundle\EventSubscriber\SluggerSubscriber
         arguments: ['@slugger']
         tags:
