@@ -1,3 +1,8 @@
+bu_project:
+    resource: "@BUProjectBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 bu_blog:
     resource: "@BUBlogBundle/Controller/"
     type:     annotation
