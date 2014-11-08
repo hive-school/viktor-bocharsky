@@ -2,13 +2,12 @@
 
 namespace BU\ProjectBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * User
  *
- * @ORM\Table(name="users")
+ * @ORM\Table()
  * @ORM\Entity
  */
 class User
@@ -42,15 +41,6 @@ class User
      * @ORM\Column(name="lastName", type="string", length=255)
      */
     private $lastName;
-
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->projects = new ArrayCollection();
-    }
 
 
     /**
@@ -107,38 +97,5 @@ class User
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    /**
-     * Add projects
-     *
-     * @param \BU\ProjectBundle\Entity\Project $projects
-     * @return User
-     */
-    public function addProject(\BU\ProjectBundle\Entity\Project $projects)
-    {
-        $this->projects[] = $projects;
-
-        return $this;
-    }
-
-    /**
-     * Remove projects
-     *
-     * @param \BU\ProjectBundle\Entity\Project $projects
-     */
-    public function removeProject(\BU\ProjectBundle\Entity\Project $projects)
-    {
-        $this->projects->removeElement($projects);
-    }
-
-    /**
-     * Get projects
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getProjects()
-    {
-        return $this->projects;
     }
 }
