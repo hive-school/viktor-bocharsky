@@ -1,0 +1,8 @@
+parameters:
+
+services:
+    bu_project.event_listener.user:
+        class: BU\ProjectBundle\EventListener\UserListener
+        arguments: ['@mailer']
+        tags:
+            - { name: doctrine.event_listener, event: postPersist }
