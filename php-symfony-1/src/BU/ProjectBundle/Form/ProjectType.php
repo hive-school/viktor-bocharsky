@@ -18,8 +18,16 @@ class ProjectType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('budget')
-            ->add('status')
-            ->add('user')
+            ->add('status', 'entity', [
+                'required' => false,
+                'class' => 'BU\ProjectBundle\Entity\Status',
+                'property' => 'name',
+            ])
+            ->add('user', 'entity', [
+                'required' => false,
+                'class' => 'BU\BlogBundle\Entity\User',
+                'property' => 'firstName',
+            ])
         ;
     }
     

@@ -2,6 +2,7 @@
 
 namespace BU\ProjectBundle\Entity;
 
+use BU\BlogBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -43,16 +44,16 @@ class Project
     private $budget;
 
     /**
-     * @var
+     * @var Status
      *
      * @ORM\ManyToOne(targetEntity="BU\ProjectBundle\Entity\Status", inversedBy="projects")
      */
     private $status;
 
     /**
-     * @var
+     * @var User
      *
-     * @ORM\ManyToOne(targetEntity="BU\ProjectBundle\Entity\User", inversedBy="projects")
+     * @ORM\ManyToOne(targetEntity="BU\BlogBundle\Entity\User", inversedBy="projects")
      */
     private $user;
 
@@ -162,10 +163,10 @@ class Project
     /**
      * Set user
      *
-     * @param \BU\ProjectBundle\Entity\User $user
+     * @param \BU\BlogBundle\Entity\User $user
      * @return Project
      */
-    public function setUser(\BU\ProjectBundle\Entity\User $user = null)
+    public function setUser(\BU\BlogBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -175,7 +176,7 @@ class Project
     /**
      * Get user
      *
-     * @return \BU\ProjectBundle\Entity\User 
+     * @return \BU\BlogBundle\Entity\User
      */
     public function getUser()
     {

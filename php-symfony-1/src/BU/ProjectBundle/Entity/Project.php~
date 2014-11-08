@@ -2,12 +2,13 @@
 
 namespace BU\ProjectBundle\Entity;
 
+use BU\BlogBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Project
  *
- * @ORM\Table()
+ * @ORM\Table(name="projects")
  * @ORM\Entity
  */
 class Project
@@ -43,16 +44,16 @@ class Project
     private $budget;
 
     /**
-     * @var
+     * @var Status
      *
      * @ORM\ManyToOne(targetEntity="BU\ProjectBundle\Entity\Status", inversedBy="projects")
      */
     private $status;
 
     /**
-     * @var
+     * @var User
      *
-     * @ORM\ManyToOne(targetEntity="BU\ProjectBundle\Entity\User", inversedBy="projects")
+     * @ORM\ManyToOne(targetEntity="BU\BlogBundle\Entity\User", inversedBy="projects")
      */
     private $user;
 
@@ -134,5 +135,51 @@ class Project
     public function getBudget()
     {
         return $this->budget;
+    }
+
+    /**
+     * Set status
+     *
+     * @param \BU\ProjectBundle\Entity\Status $status
+     * @return Project
+     */
+    public function setStatus(\BU\ProjectBundle\Entity\Status $status = null)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return \BU\ProjectBundle\Entity\Status 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \BU\BlogBundle\Entity\User $user
+     * @return Project
+     */
+    public function setUser(\BU\BlogBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \BU\BlogBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -30,7 +30,7 @@ class Status
     private $name;
 
     /**
-     * @var
+     * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="BU\ProjectBundle\Entity\Project", mappedBy="status")
      */
