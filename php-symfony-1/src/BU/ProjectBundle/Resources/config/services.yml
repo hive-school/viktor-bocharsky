@@ -3,6 +3,6 @@ parameters:
 services:
     bu_project.event_listener.user:
         class: BU\ProjectBundle\EventListener\UserListener
-        arguments: ['@mailer']
+        arguments: ['@mailer', '@session']
         tags:
             - { name: doctrine.event_listener, event: postPersist }

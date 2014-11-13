@@ -7,6 +7,11 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+        {% for flashMessage in app.session.flashbag.get('notice') %}
+            <div class="flash-notice" style="color: #B69D08; background-color: #FFFBDF; margin: 20px; padding: 20px 40px; border: 1px solid #EAEA2E;">
+                {{ flashMessage|raw }}
+            </div>
+        {% endfor %}
         <ul>
             <li>
                 <a href="{{ path('home') }}">Home</a>
