@@ -2,7 +2,15 @@ parameters:
 
 services:
     bu_project.event_listener.user:
+        public: false
         class: BU\ProjectBundle\EventListener\UserListener
         arguments: ['@mailer', '@session']
         tags:
             - { name: doctrine.event_listener, event: postPersist }
+
+    bu_project.event_listener.project:
+        public: false
+        class: BU\ProjectBundle\EventListener\ProjectListener
+        arguments: ['@session']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }

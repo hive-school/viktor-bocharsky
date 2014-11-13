@@ -41,7 +41,7 @@ class Project
      *
      * @ORM\Column(name="budget", type="integer")
      */
-    private $budget;
+    private $budget = 0;
 
     /**
      * @var Status

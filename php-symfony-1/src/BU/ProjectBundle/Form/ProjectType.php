@@ -17,14 +17,16 @@ class ProjectType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('budget')
+            ->add('budget', 'integer', [
+                'label' => 'Budget, $',
+            ])
             ->add('status', 'entity', [
                 'required' => false,
                 'class' => 'BU\ProjectBundle\Entity\Status',
                 'property' => 'name',
             ])
             ->add('user', 'entity', [
-                'required' => false,
+//                'required' => false,
                 'class' => 'BU\BlogBundle\Entity\User',
                 'property' => 'firstName',
             ])
